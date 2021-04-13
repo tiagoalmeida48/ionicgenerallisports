@@ -15,11 +15,7 @@ const routes: Routes = [
     path: 'academias',
     loadChildren: () => import('./academias/academias.module').then( m => m.AcademiasPageModule)
   },
-  {
-    path: 'produtos',
-    loadChildren: () => import('./produtos/produtos.module').then( m => m.ProdutosPageModule)
-  },
-  {
+   {
     path: 'suplementos',
     loadChildren: () => import('./suplementos/suplementos.module').then( m => m.SuplementosPageModule)
   },
@@ -30,6 +26,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'items',
+    loadChildren: () => import('./items/items.module').then( m => m.ItemsPageModule)
   }
 ];
 

@@ -1,0 +1,11 @@
+<app-header titulo="Home"></app-header>
+
+<ion-content>
+    <h1>Bem Vindo(a)</h1>
+    <ion-item *ngFor="let Produtos of produtos">
+        <img class="fotosHome" src="{{Produtos.fotoEmString}}" />
+        <ion-label>
+            {{Produtos.tipoProduto}} - {{Produtos.modelo}} - R$ {{Produtos.valor}},00
+        </ion-label>
+    </ion-item>
+</ion-content>

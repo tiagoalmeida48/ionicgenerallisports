@@ -1,0 +1,12 @@
+<app-header titulo="Produtos"></app-header>
+
+<ion-content>
+  <ion-card *ngFor="let Produtos of produtos">
+    <center>
+      <img width="150px" src="{{Produtos.fotoEmString}}" />
+    </center>
+    <ion-card-header>
+    <h4>{{Produtos.tipoProduto}} - {{Produtos.modelo}} - R$ {{Produtos.valor}},00</h4>
+    </ion-card-header>
+  </ion-card>
+</ion-content>
