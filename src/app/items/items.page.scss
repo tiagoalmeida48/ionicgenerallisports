@@ -1,6 +1,16 @@
 ion-content {
   --background: rgb(231, 231, 231) no-repeat center center / cover !important;
+  color: black;
 }
 ion-card {
   --background: white ;
+}
+ion-fab-button {
+  float: left;
+  margin: 2px 5px;
+}
+.labelProdutosCategorias {
+  margin: 0 15px 0 2px;
+  font-size: 13px;
+  color: rgb(131, 131, 131);
 }
