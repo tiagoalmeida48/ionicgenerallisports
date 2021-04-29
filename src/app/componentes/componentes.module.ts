@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
+import { CabecalhoBackComponent } from './cabecalho-back/cabecalho-back.component';
 
 const pages = [
-  HeaderComponent
+  CabecalhoBackComponent
 ]
 @NgModule({
     declarations: pages,

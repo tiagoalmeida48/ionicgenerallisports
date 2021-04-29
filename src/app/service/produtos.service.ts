@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Produto } from '../models/produto.models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,9 @@ export class ProdutosService {
     return this.http.get('http://localhost:8080/api/produtos/');
   }
 
-  // getUsuario(Pid){
-  //   return this.http.get<Usuario>('https://reqres.in/api/users/' + Pid);
-  // }
+  getProduto(Pid){
+    return this.http.get<Produto>('http://localhost:8080/api/produtos/' + Pid);
+  }
 
   // createPosts(posts: Posts){
   //   return this.http.post('https://reqres.in/api/users', posts);

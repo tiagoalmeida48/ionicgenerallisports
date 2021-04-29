@@ -1,0 +1,21 @@
+<app-cabecalho-back titulo="Detalhes Produto"></app-cabecalho-back>
+
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header>
+      <center><img width="200px" src="{{fotoEmString}}" /></center>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title>{{nomeProduto}}</ion-card-title>
+      <ion-card-title>Quantidade: {{ quantidadeEstoque }}</ion-card-title>
+      <ion-card-title>{{precoVenda | currency: "BRL"}}</ion-card-title><br>
+      <ion-button *ngIf="quantidadeEstoque > 0" expand="full" [routerLink]="['/login']">Comprar</ion-button>
+      <ion-button *ngIf="quantidadeEstoque > 0" expand="full" (click)="addCarrinho(produto)">Adicionar no carrinho</ion-button>
+      <ion-item *ngIf="quantidadeEstoque == 0" lines="none">
+        <span class="produtoIndisponivel">Produto indisponível</span>
+      </ion-item><br>
+      <ion-card-subtitle>Descrição:</ion-card-subtitle>
+      <ion-card-subtitle>{{descricao}}</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,11 @@
+<app-cabecalho-back titulo="Carrinho"></app-cabecalho-back>
+
+<ion-content>
+  <ion-card>
+    <ion-item *ngFor="let Produtos of carrinho" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
+      <img width="40px" src="{{Produtos.fotoEmString}}" />
+      <span>{{Produtos.produto}}<br> {{Produtos.precoVenda | currency: "BRL"}}</span>
+      <hr>
+    </ion-item>
+  </ion-card>
+</ion-content>

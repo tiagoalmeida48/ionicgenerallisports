@@ -4,24 +4,20 @@ import { ProdutosService } from '../service/produtos.service';
 import { StorageService } from '../service/storage.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-modas',
+  templateUrl: './modas.page.html',
+  styleUrls: ['./modas.page.scss'],
 })
-export class HomePage implements OnInit {
-
+export class ModasPage implements OnInit {
   public produtos: any;
+
   constructor(private produtoService: ProdutosService, public autorizacaoService: AutorizacaoService, public storage: StorageService) { }
 
   ngOnInit() {
-    this.produtoService.getProdutos()
+    this.produtoService.getProduto('categoria/Modas')
       .subscribe((resposta) => {
         this.produtos = resposta;
+        alert(this.produtos.length);
       });
-  }
-
-  logout() {
-    this.storage.setLocalUser(null);
-    location.reload();
   }
 }

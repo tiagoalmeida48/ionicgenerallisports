@@ -1,13 +1,4 @@
-<ion-header>
-  <ion-toolbar class="toolbarHeader">
-    <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>Generally Sports</ion-title>
-    <ion-buttons slot="end">
-      <ion-button><ion-icon name="search"></ion-icon></ion-button>
-      <ion-button><ion-icon name="cart"></ion-icon></ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-cabecalho-back titulo="Acessórios"></app-cabecalho-back>
 
 <ion-content>
   <div class="botoesCategorias">
@@ -23,7 +14,6 @@
     <ion-label class="labelProdutosCategorias">Acessórios</ion-label>
   </div>
   <ion-card>
-    <h6 class="titulo center">Produtos</h6>
     <ion-item *ngFor="let Produtos of produtos" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
       <img width="40px" src="{{Produtos.fotoEmString}}" />
       <span>{{Produtos.nomeProduto}}<br> {{Produtos.precoVenda | currency: "BRL"}}</span>
@@ -31,6 +21,3 @@
     </ion-item>
   </ion-card>
 </ion-content>
-<ion-footer class="ion-no-border">
-    <ion-button (click)="logout()">Sair</ion-button>
-</ion-footer>

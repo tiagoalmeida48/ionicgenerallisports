@@ -28,8 +28,28 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'items',
-    loadChildren: () => import('./items/items.module').then( m => m.ItemsPageModule)
+    path: 'sobre',
+    loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
+  },
+  {
+    path: 'detalhesProduto/:id',
+    loadChildren: () => import('./detalhes-produto/detalhes-produto.module').then( m => m.DetalhesProdutoPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'carrinho',
+    loadChildren: () => import('./carrinho/carrinho.module').then( m => m.CarrinhoPageModule)
+  },
+  {
+    path: 'modas',
+    loadChildren: () => import('./modas/modas.module').then( m => m.ModasPageModule)
+  },
+  {
+    path: 'acessorios',
+    loadChildren: () => import('./acessorios/acessorios.module').then( m => m.AcessoriosPageModule)
   }
 ];
 
