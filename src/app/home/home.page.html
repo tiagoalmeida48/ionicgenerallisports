@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar class="toolbarHeader">
-    <ion-menu-button slot="start"></ion-menu-button>
-    <ion-title>Generally Sports</ion-title>
-    <ion-buttons slot="end">
-      <ion-button><ion-icon name="search"></ion-icon></ion-button>
+    <ion-menu-button *ngIf="!barraPesquisar" slot="start"></ion-menu-button>
+    <ion-title *ngIf="!barraPesquisar">Generally Sports</ion-title>
+    <ion-buttons *ngIf="!barraPesquisar" slot="end">
+      <ion-button *ngIf="!barraPesquisar" (click)="barraPesquisar=true"><ion-icon name="search"></ion-icon></ion-button>
       <ion-button><ion-icon name="cart"></ion-icon></ion-button>
     </ion-buttons>
+    <ion-searchbar *ngIf="barraPesquisar" placeholder="Pesquisar produtos" animated (ionChange)="buscarProduto($event)" (ionCancel)="barraPesquisar=false" showCancelButton="true"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -24,9 +25,13 @@
   </div>
   <ion-card>
     <h6 class="titulo center">Produtos</h6>
-    <ion-item *ngFor="let Produtos of produtos" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
+    <ion-item *ngFor="let Produtos of produtos | filtro:pesquisar" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
       <img width="40px" src="{{Produtos.fotoEmString}}" />
-      <span>{{Produtos.nomeProduto}}<br> {{Produtos.precoVenda | currency: "BRL"}}</span>
+      <span>
+        {{Produtos.nomeProduto}}<br>
+        {{Produtos.precoVenda | currency: "BRL"}}<br>
+        <span class="produtoIndisponivel" *ngIf="Produtos.quantidadeEstoque == 0">Indisponível</span>
+      </span>
       <hr>
     </ion-item>
   </ion-card>

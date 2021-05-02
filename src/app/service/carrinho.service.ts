@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Carrinho } from '../models/carrinho.models';
 import { StorageService } from './storage.service';
 
@@ -9,31 +8,29 @@ import { StorageService } from './storage.service';
 })
 export class CarrinhoService {
 
+  public headers = new HttpHeaders({
+    "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE",
+    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+    "Authorization": "Bearer " + this.storage.getLocalUser().token
+  });
   constructor(private http: HttpClient, public storage: StorageService) { }
 
   getCarrinho(id){
-    let headers = new HttpHeaders({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-      "Authorization": "Bearer " + this.storage.getLocalUser().token
-    });
-    return this.http.get('http://localhost:8080/api/carrinhocompras/' + id, {'headers': headers});
+    return this.http.get('http://localhost:8080/api/carrinhocompras/' + id, {'headers': this.headers});
   }
 
-  public createCarrinho(carrinho: Carrinho){
-    let headers = new HttpHeaders({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": 'POST, GET, OPTIONS, DELETE',
-      "Access-Control-Allow-Headers": 'Content-Type',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      "Authorization": "Bearer " + this.storage.getLocalUser().token
-    });
-    return this.http.post('http://localhost:8080/api/carrinhocompras', carrinho, {'headers': headers});
+  createCarrinho(carrinho: Carrinho){
+    this.http.post('http://localhost:8080/api/carrinhocompras', carrinho, {'headers': this.headers});
   }
 
-  // updatePosts(posts: Posts){
-  //   return this.http.put('https://reqres.in/api/users/' + posts.id, posts);
+  // public updateCarrinho(carrinho: CarrinhoItem){
+  //   return this.http.put('https://reqres.in/api/users/' + carrinho.idCarrinho, carrinho);
   // }
+
+  deleteCarrinho(id){
+    return this.http.delete('http://localhost:8080/api/carrinhocompras/delete/' + id, {'headers': this.headers});
+
+  }
 
   // deletePosts(posts: Posts){
   //   return this.http.delete('https://reqres.in/api/users/' + posts.id);

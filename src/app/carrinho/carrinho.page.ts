@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Carrinho } from '../models/carrinho.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
 import { CarrinhoService } from '../service/carrinho.service';
 import { StorageService } from '../service/storage.service';
@@ -18,9 +19,12 @@ export class CarrinhoPage implements OnInit {
       this.carrinhoService.getCarrinho(data.pessoa.idPessoa)
         .subscribe((resposta) => {
           this.carrinho = resposta;
-          console.log(resposta);
       });
     });
+  }
+
+  removeProduto(id){
+    this.carrinhoService.deleteCarrinho(id);
   }
 
 }

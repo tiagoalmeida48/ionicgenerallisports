@@ -2,10 +2,41 @@
 
 <ion-content>
   <ion-card>
-    <ion-item *ngFor="let Produtos of carrinho" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
-      <img width="40px" src="{{Produtos.fotoEmString}}" />
-      <span>{{Produtos.produto}}<br> {{Produtos.precoVenda | currency: "BRL"}}</span>
-      <hr>
-    </ion-item>
+    <ion-item *ngFor="let Carrinho of carrinho">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="imagemCarrinho">
+              <center>
+                <img width="60px" src="{{Carrinho.produto.fotoEmString}}" />
+              </center>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="10">
+              <span class="detalhesCarrinho">{{Carrinho.produto.nomeProduto}}</span><br>
+              <span class="detalhesCarrinho">{{Carrinho.produto.precoVenda | currency: "BRL"}}</span>
+              <ion-item lines="none">
+                <ion-select interface="popover" value="1">
+                  <ion-select-option value="1">1 unidade</ion-select-option>
+                  <ion-select-option value="2">2 unidades</ion-select-option>
+                  <ion-select-option value="3">3 unidades</ion-select-option>
+                  <ion-select-option value="4">4 unidades</ion-select-option>
+                  <ion-select-option value="5">5 unidades</ion-select-option>
+                  <ion-select-option value="6">6 unidades</ion-select-option>
+                  <ion-select-option value="7">7 unidades</ion-select-option>
+                  <ion-select-option value="8">8 unidades</ion-select-option>
+                  <ion-select-option value="9">9 unidades</ion-select-option>
+                  <ion-select-option value="10">10 unidades</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+            <ion-col size="2">
+              <button style="background-color: transparent; margin: 140% 0;" (click)="removeProduto(Carrinho.idCarrinho)">
+                <ion-icon color="danger" style="font-size: 20px" name="trash-bin-outline" ></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
   </ion-card>
 </ion-content>

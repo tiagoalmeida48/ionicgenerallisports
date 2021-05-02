@@ -1,37 +1,37 @@
 export interface Produto {
-  caminhoFoto: string,
-  categoria: string,
-  custoUnitario: number,
-  descricao: string,
-  fornecedor: Fornecedor,
-  fotoEmString: string,
   idProduto: number,
-  inativo: boolean,
   nomeProduto: string,
+  descricao: string,
+  categoria: string,
+  fornecedor: Fornecedor,
+  validade: string
+  custoUnitario: number,
   precoVenda: number,
   quantidadeEstoque: number,
   saldoAtual: number,
-  validade: string
+  caminhoFoto: string,
+  fotoEmString: string,
+  inativo: boolean,
 }
 
 interface Fornecedor {
-  categoriaProduto: string,
+  id: number,
+  razaoSocial: string,
   cnpj: string,
   email: string,
-  endereco: Endereco,
-  id: number,
-  inativo: boolean,
-  razaoSocial: string,
   tel: string
+  categoriaProduto: string,
+  endereco: Endereco,
+  inativo: boolean,
 }
 
 interface Endereco {
-  bairro: string,
-  cep: string,
-  cidade: string,
-  complemento: string,
   id: number,
   logradouro: string,
   numero: number,
-  uf: string,
+  complemento: string,
+  bairro: string,
+  cidade: string,
+  cep: string,
+  uf: string
 }

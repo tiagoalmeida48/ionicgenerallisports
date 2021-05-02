@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Produto } from '../models/produto.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
 import { ProdutosService } from '../service/produtos.service';
 import { StorageService } from '../service/storage.service';
@@ -10,12 +11,14 @@ import { StorageService } from '../service/storage.service';
 })
 export class HomePage implements OnInit {
 
+  public barraPesquisar: boolean = false;
+  public pesquisar = '';
   public produtos: any;
   constructor(private produtoService: ProdutosService, public autorizacaoService: AutorizacaoService, public storage: StorageService) { }
 
   ngOnInit() {
     this.produtoService.getProdutos()
-      .subscribe((resposta) => {
+      .subscribe((resposta: Produto) => {
         this.produtos = resposta;
       });
   }
@@ -23,5 +26,10 @@ export class HomePage implements OnInit {
   logout() {
     this.storage.setLocalUser(null);
     location.reload();
+  }
+
+  buscarProduto(mostrar) {
+    const texto = mostrar.target.value;
+    this.pesquisar = texto;
   }
 }

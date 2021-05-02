@@ -1,0 +1,30 @@
+.imagemCarrinho {
+  border-bottom: 1px solid black;
+}
+
+span.detalhesCarrinho {
+  font-size: 15px;
+  padding: 0 8px;
+}
+
+ion-item {
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.titulo {
+  color: black;
+  text-decoration: underline;
+}
+ion-icon {
+  color: red;
+  font-size: 20px;
+  pointer-events: none;
+}
+ion-select {
+  font-size: 15px;
+}

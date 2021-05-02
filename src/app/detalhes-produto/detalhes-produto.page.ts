@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Carrinho } from '../models/carrinho.models';
 import { Produto } from '../models/produto.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
@@ -15,7 +16,7 @@ import { StorageService } from '../service/storage.service';
 })
 export class DetalhesProdutoPage implements OnInit {
 
-  public carrinho: Carrinho;
+  //public carrinho: Carrinho[];
   public produto: Produto;
   public caminhoFoto = null;
   public categoria = null;
@@ -31,7 +32,7 @@ export class DetalhesProdutoPage implements OnInit {
   public validade = null;
   public idPessoa = null;
 
-  constructor(public route: ActivatedRoute, private produtoService: ProdutosService, public carrinhoService: CarrinhoService, public nav: NavController, public autorizacao: AutorizacaoService, public storage: StorageService) {
+  constructor(public route: ActivatedRoute, private produtoService: ProdutosService, public nav: NavController, public autorizacao: AutorizacaoService, public storage: StorageService) {
     this.route.paramMap.subscribe((param1: ParamMap) => {
       this.produtoService.getProduto(param1.get('id'))
         .subscribe(resposta => {
@@ -56,22 +57,15 @@ export class DetalhesProdutoPage implements OnInit {
 
   }
 
-  addCarrinho(produto: Produto){
-    this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
-      this.carrinho = {
-        "idUsuario": data.pessoa.idPessoa,
-        "idProduto": produto.idProduto,
-        "produto": produto.nomeProduto,
-        "caminhoFoto": produto.fotoEmString,
-        "descricao": produto.descricao,
-        "precoVenda": produto.precoVenda,
-        "quantidadeCarrinho": 1
-      };
-      console.log(this.carrinho);
-      this.carrinhoService.createCarrinho(this.carrinho).subscribe(data => {
-        console.log(data);
-      })
-    });
-    this.nav.navigateRoot('carrinho');
-  }
+  // addCarrinho(produto: Produto){
+  //   this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
+  //     // this.carrinho = {
+  //     //   "produto":{ "idProduto": produto.idProduto },
+  //     //   "idUsuario": data.pessoa.idPessoa,
+  //     //   "quantidadeCarrinho": 1
+  //     // };
+  //     //this.carrinhoService.createCarrinho(this.carrinho)
+  //   });
+  //   this.nav.navigateRoot('carrinho');
+  // }
 }

@@ -1,9 +1,8 @@
+import { Produto } from "./produto.models";
+
 export interface Carrinho {
-  produto: string,
+  idCarrinho?: number,
   idUsuario: number,
-  idProduto: number,
-  caminhoFoto: string,
-  descricao: string,
-  precoVenda: number,
+  produto: Produto,
   quantidadeCarrinho: number
 }
