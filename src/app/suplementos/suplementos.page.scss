@@ -1,12 +1,12 @@
-.toolbarHeader {
+.toolbarHeader, ion-icon {
   --background: #0070c0;
   color: white;
 }
 ion-footer {
   background: #747474;
 }
-ion-menu-button {
-  color: white;
+ion-back-button {
+  color: white !important;
 }
 ion-content {
   --background: rgb(231, 231, 231) no-repeat center center / cover !important;
@@ -36,7 +36,7 @@ img {
 }
 
 ion-item span {
-  font-size: 12px;
+  font-size: 14px;
   padding: 10px 0;
 }
 
@@ -52,4 +52,8 @@ ion-item {
 .titulo {
   color: black;
   text-decoration: underline;
+}
+.produtoIndisponivel {
+  color: red;
+  font-size: 15px !important;
 }

@@ -8,6 +8,7 @@ import { SuplementosPageRoutingModule } from './suplementos-routing.module';
 
 import { SuplementosPage } from './suplementos.page';
 import { ComponentesModule } from '../componentes/componentes.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentesModule } from '../componentes/componentes.module';
     FormsModule,
     IonicModule,
     SuplementosPageRoutingModule,
-    ComponentesModule
+    ComponentesModule,
+    PipesModule
   ],
   declarations: [SuplementosPage]
 })

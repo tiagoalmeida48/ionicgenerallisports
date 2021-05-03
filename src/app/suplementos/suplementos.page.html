@@ -1,6 +1,18 @@
-<app-cabecalho-back titulo="Suplementos"></app-cabecalho-back>
+<ion-header>
+  <ion-toolbar class="toolbarHeader">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Suplementos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="barraPesquisar=true"><ion-icon name="search"></ion-icon></ion-button>
+      <ion-button><ion-icon name="cart"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
+  <ion-searchbar *ngIf="barraPesquisar" placeholder="Pesquisar produtos" animated (ionChange)="buscarProduto($event)" (ionCancel)="barraPesquisar=false" showCancelButton="true"></ion-searchbar>
   <div class="botoesCategorias">
     <ion-fab-button [routerLink]="['/home/']"><ion-icon name="bag-handle"></ion-icon></ion-fab-button>
     <ion-fab-button [routerLink]="['/suplementos/']"><ion-icon name="podium"></ion-icon></ion-fab-button>
@@ -14,11 +26,13 @@
     <ion-label class="labelProdutosCategorias">Acessórios</ion-label>
   </div>
   <ion-card>
-    <ion-item *ngFor="let Produtos of produtos" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
+    <ion-item *ngFor="let Produtos of produtos | filtro:pesquisar" [routerLink]="['/detalhesProduto/' + Produtos.idProduto]">
       <img width="40px" src="{{Produtos.fotoEmString}}" />
       <span>{{Produtos.nomeProduto}}<br> {{Produtos.precoVenda | currency: "BRL"}}</span>
       <hr>
     </ion-item>
-    
+    <ion-item *ngIf="zeroProdutos">
+      <span>Nenhum produto cadastrado</span>
+    </ion-item>
   </ion-card>
 </ion-content>

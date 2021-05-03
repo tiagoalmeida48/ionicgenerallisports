@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { GuardRotasGuard } from './guard/guard-rotas.guard';
 
 const routes: Routes = [
   {
@@ -41,11 +42,13 @@ const routes: Routes = [
   },
   {
     path: 'carrinho',
-    loadChildren: () => import('./carrinho/carrinho.module').then( m => m.CarrinhoPageModule)
+    loadChildren: () => import('./carrinho/carrinho.module').then( m => m.CarrinhoPageModule),
+    canActivate: [GuardRotasGuard]
   },
   {
     path: 'modas',
-    loadChildren: () => import('./modas/modas.module').then( m => m.ModasPageModule)
+    loadChildren: () => import('./modas/modas.module').then( m => m.ModasPageModule),
+    canActivate: [GuardRotasGuard]
   },
   {
     path: 'acessorios',

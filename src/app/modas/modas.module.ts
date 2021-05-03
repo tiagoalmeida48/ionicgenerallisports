@@ -8,6 +8,7 @@ import { ModasPageRoutingModule } from './modas-routing.module';
 
 import { ModasPage } from './modas.page';
 import { ComponentesModule } from '../componentes/componentes.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentesModule } from '../componentes/componentes.module';
     FormsModule,
     IonicModule,
     ModasPageRoutingModule,
-    ComponentesModule
+    ComponentesModule,
+    PipesModule
   ],
   declarations: [ModasPage]
 })
