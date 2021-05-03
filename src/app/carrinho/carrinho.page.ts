@@ -11,7 +11,7 @@ import { StorageService } from '../service/storage.service';
 })
 export class CarrinhoPage implements OnInit {
 
-  public carrinho: any;
+  public carrinho: Carrinho;
   constructor(private carrinhoService: CarrinhoService, public autorizacao: AutorizacaoService, public storage: StorageService) { }
 
   ngOnInit() {

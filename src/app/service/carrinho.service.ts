@@ -16,11 +16,11 @@ export class CarrinhoService {
   constructor(private http: HttpClient, public storage: StorageService) { }
 
   getCarrinho(id){
-    return this.http.get('http://localhost:8080/api/carrinhocompras/' + id, {'headers': this.headers});
+    return this.http.get<Carrinho>('http://localhost:8080/api/carrinhocompras/' + id, {'headers': this.headers});
   }
 
   createCarrinho(carrinho: Carrinho){
-    this.http.post('http://localhost:8080/api/carrinhocompras', carrinho, {'headers': this.headers});
+    return this.http.post<Carrinho>('http://localhost:8080/api/carrinhocompras', carrinho, {'headers': this.headers});
   }
 
   // public updateCarrinho(carrinho: CarrinhoItem){
