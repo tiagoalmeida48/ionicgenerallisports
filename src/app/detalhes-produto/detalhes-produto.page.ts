@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { AppComponent } from '../app.component';
 import { Carrinho } from '../models/carrinho.models';
 import { Produto } from '../models/produto.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
@@ -59,16 +60,13 @@ export class DetalhesProdutoPage implements OnInit {
 
   addCarrinho(produto: Produto){
     this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
-      this.carrinho = {
-        "produto": { "idProduto": produto.idProduto },
+      this.carrinhoService.CarrinhoDeCompraGet.push({
+        "idCarrinho": 1,
+        "produto": produto.idProduto,
         "idUsuario": data.pessoa.idPessoa,
         "quantidadeCarrinho": 1
-      };
-      this.carrinhoService.createCarrinho(this.carrinho).toPromise().then(data => {
-        console.log(data);
-      }).catch(err => {
-        console.log(err);
       });
+      //this.carrinhoService.createCarrinho(this.carrinho);
     });
     this.nav.navigateRoot('carrinho');
   }

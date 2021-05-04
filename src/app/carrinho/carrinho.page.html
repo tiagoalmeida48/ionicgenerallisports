@@ -2,7 +2,7 @@
 
 <ion-content>
   <ion-card>
-    <ion-item *ngFor="let Carrinho of carrinho">
+    <ion-item *ngFor="let Carrinho of app.CarrinhoDeCompraGet">
         <ion-grid>
           <ion-row>
             <ion-col size="12" class="imagemCarrinho">
@@ -16,7 +16,7 @@
               <span class="detalhesCarrinho">{{Carrinho.produto.nomeProduto}}</span><br>
               <span class="detalhesCarrinho">{{Carrinho.produto.precoVenda | currency: "BRL"}}</span>
               <ion-item lines="none">
-                <ion-select interface="popover" value="1">
+                <ion-select interface="popover" value="{{ Carrinho.quantidadeCarrinho }}">
                   <ion-select-option value="1">1 unidade</ion-select-option>
                   <ion-select-option value="2">2 unidades</ion-select-option>
                   <ion-select-option value="3">3 unidades</ion-select-option>

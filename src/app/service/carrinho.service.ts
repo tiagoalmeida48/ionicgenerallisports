@@ -8,6 +8,15 @@ import { StorageService } from './storage.service';
 })
 export class CarrinhoService {
 
+  public CarrinhoDeCompraInserir = [{
+    "idCarrinho": null,
+    "idUsuario": null,
+    "produto": { "idProduto": null},
+    "quantidadeCarrinho": null
+  }];
+
+  public CarrinhoDeCompraGet: Carrinho[];
+
   public headers = new HttpHeaders({
     "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE",
     "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
@@ -28,7 +37,8 @@ export class CarrinhoService {
   // }
 
   deleteCarrinho(id){
-    return this.http.delete('http://localhost:8080/api/carrinhocompras/delete/' + id, {'headers': this.headers});
+    alert(id);
+    return this.http.delete<Carrinho>('http://localhost:8080/api/carrinhocompras/delete/' + id, {'headers': this.headers});
 
   }
 
