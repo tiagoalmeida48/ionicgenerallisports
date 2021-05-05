@@ -9,7 +9,7 @@
       <ion-card-title>{{nomeProduto}}</ion-card-title>
       <ion-card-title>Quantidade: {{ quantidadeEstoque }}</ion-card-title>
       <ion-card-title>{{precoVenda | currency: "BRL"}}</ion-card-title><br>
-      <ion-button *ngIf="quantidadeEstoque > 0" expand="full" [routerLink]="['/login']">Comprar</ion-button>
+      <ion-button *ngIf="quantidadeEstoque > 0" expand="full" [routerLink]="['/confirmar-endereco']">Comprar</ion-button>
       <ion-button *ngIf="quantidadeEstoque > 0" expand="full" (click)="addCarrinho(produto)">Adicionar no carrinho</ion-button>
       <ion-item *ngIf="quantidadeEstoque == 0" lines="none">
         <span class="produtoIndisponivel">Produto indisponível</span>

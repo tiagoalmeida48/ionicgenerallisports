@@ -8,15 +8,6 @@ import { StorageService } from './storage.service';
 })
 export class CarrinhoService {
 
-  public CarrinhoDeCompraInserir = [{
-    "idCarrinho": null,
-    "idUsuario": null,
-    "produto": { "idProduto": null},
-    "quantidadeCarrinho": null
-  }];
-
-  public CarrinhoDeCompraGet: Carrinho[];
-
   public headers = new HttpHeaders({
     "Access-Control-Allow-Origin": "GET, POST, PUT, DELETE",
     "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",

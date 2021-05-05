@@ -9,6 +9,7 @@ import { ModasPageRoutingModule } from './modas-routing.module';
 import { ModasPage } from './modas.page';
 import { ComponentesModule } from '../componentes/componentes.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [

@@ -9,6 +9,7 @@ import { AcessoriosPageRoutingModule } from './acessorios-routing.module';
 import { AcessoriosPage } from './acessorios.page';
 import { ComponentesModule } from '../componentes/componentes.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [

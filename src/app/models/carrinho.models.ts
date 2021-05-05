@@ -1,7 +1,7 @@
 export interface Carrinho {
   idCarrinho?: number,
   idUsuario: number,
-  produto: number,
+  produto: Produto,
   quantidadeCarrinho: number
 }
 

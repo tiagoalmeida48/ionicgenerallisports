@@ -47,12 +47,16 @@ const routes: Routes = [
   },
   {
     path: 'modas',
-    loadChildren: () => import('./modas/modas.module').then( m => m.ModasPageModule),
-    canActivate: [GuardRotasGuard]
+    loadChildren: () => import('./modas/modas.module').then( m => m.ModasPageModule)
   },
   {
     path: 'acessorios',
     loadChildren: () => import('./acessorios/acessorios.module').then( m => m.AcessoriosPageModule)
+  },
+  {
+    path: 'confirmar-endereco',
+    loadChildren: () => import('./confirmar-endereco/confirmar-endereco.module').then( m => m.ConfirmarEnderecoPageModule),
+    canActivate: [GuardRotasGuard]
   }
 ];
 

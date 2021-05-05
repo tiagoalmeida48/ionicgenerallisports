@@ -9,6 +9,7 @@ import { SuplementosPageRoutingModule } from './suplementos-routing.module';
 import { SuplementosPage } from './suplementos.page';
 import { ComponentesModule } from '../componentes/componentes.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
