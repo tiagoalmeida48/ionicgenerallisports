@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ModasPageRoutingModule } from './modas-routing.module';
+import { ValidaVoucherPageRoutingModule } from './valida-voucher-routing.module';
 
-import { ModasPage } from './modas.page';
-import { PipesModule } from '../pipes/pipes.module';
+import { ValidaVoucherPage } from './valida-voucher.page';
 import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
@@ -15,9 +14,8 @@ import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-
     CommonModule,
     FormsModule,
     IonicModule,
-    ModasPageRoutingModule,
-    PipesModule
+    ValidaVoucherPageRoutingModule
   ],
-  declarations: [ModasPage, CabecalhoBackComponent]
+  declarations: [ValidaVoucherPage, CabecalhoBackComponent]
 })
-export class ModasPageModule {}
+export class ValidaVoucherPageModule {}

@@ -57,6 +57,18 @@ const routes: Routes = [
     path: 'confirmar-endereco',
     loadChildren: () => import('./confirmar-endereco/confirmar-endereco.module').then( m => m.ConfirmarEnderecoPageModule),
     canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'endereco/:id',
+    loadChildren: () => import('./endereco/endereco.module').then( m => m.EnderecoPageModule)
+  },
+  {
+    path: 'novo-usuario',
+    loadChildren: () => import('./novo-usuario/novo-usuario.module').then( m => m.NovoUsuarioPageModule)
+  },
+  {
+    path: 'valida-voucher',
+    loadChildren: () => import('./valida-voucher/valida-voucher.module').then( m => m.ValidaVoucherPageModule)
   }
 ];
 

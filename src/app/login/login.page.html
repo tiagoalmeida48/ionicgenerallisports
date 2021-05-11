@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="toolbarHeader">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
+      <ion-back-button defaultHref=""></ion-back-button>
     </ion-buttons>
     <ion-title>Login</ion-title>
   </ion-toolbar>
@@ -24,7 +24,7 @@
       <ion-button [disabled]="!formGroup.valid" (click)="doLogin()" expand="full" color="primary">
         Entrar
       </ion-button><br>
-        <ion-button [routerLink]="['/sign-up']" expand="full" color="primary">
+        <ion-button [routerLink]="['/novo-usuario']" expand="full" color="primary">
           Novo cadastro
         </ion-button>
         <ion-button [routerLink]="['/password-recover']" expand="full" color="primary">

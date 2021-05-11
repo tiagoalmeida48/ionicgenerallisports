@@ -7,16 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { VoucherPageRoutingModule } from './voucher-routing.module';
 
 import { VoucherPage } from './voucher.page';
-import { ComponentesModule } from '../componentes/componentes.module';
+import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VoucherPageRoutingModule,
-    ComponentesModule
+    VoucherPageRoutingModule
   ],
-  declarations: [VoucherPage]
+  declarations: [VoucherPage, CabecalhoBackComponent]
 })
 export class VoucherPageModule {}

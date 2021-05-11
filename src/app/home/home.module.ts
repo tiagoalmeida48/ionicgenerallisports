@@ -7,16 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-import { ComponentesModule } from '../componentes/componentes.module';
 import { PipesModule } from '../pipes/pipes.module';
-import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentesModule,
     HomePageRoutingModule,
     PipesModule
   ],

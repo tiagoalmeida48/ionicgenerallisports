@@ -7,9 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SuplementosPageRoutingModule } from './suplementos-routing.module';
 
 import { SuplementosPage } from './suplementos.page';
-import { ComponentesModule } from '../componentes/componentes.module';
 import { PipesModule } from '../pipes/pipes.module';
-import { AppRoutingModule } from '../app-routing.module';
+import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { AppRoutingModule } from '../app-routing.module';
     FormsModule,
     IonicModule,
     SuplementosPageRoutingModule,
-    ComponentesModule,
     PipesModule
   ],
   declarations: [SuplementosPage]

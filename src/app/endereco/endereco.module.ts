@@ -4,19 +4,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { EnderecoPageRoutingModule } from './endereco-routing.module';
 
-import { LoginPage } from './login.page';
+import { EnderecoPage } from './endereco.page';
 import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    EnderecoPageRoutingModule,
     ReactiveFormsModule,
-    LoginPageRoutingModule
+    BrMaskerModule
   ],
-  declarations: [LoginPage, CabecalhoBackComponent]
+  declarations: [EnderecoPage, CabecalhoBackComponent]
 })
-export class LoginPageModule {}
+export class EnderecoPageModule {}

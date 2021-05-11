@@ -7,17 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AcademiasPageRoutingModule } from './academias-routing.module';
 
 import { AcademiasPage } from './academias.page';
-import { ComponentesModule } from '../componentes/componentes.module';
-import { AppComponent } from '../app.component';
+import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AcademiasPageRoutingModule,
-    ComponentesModule
+    AcademiasPageRoutingModule
   ],
-  declarations: [AcademiasPage]
+  declarations: [AcademiasPage, CabecalhoBackComponent]
 })
 export class AcademiasPageModule {}

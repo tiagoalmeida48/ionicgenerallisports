@@ -1,22 +1,29 @@
-<app-cabecalho-back titulo="Carrinho"></app-cabecalho-back>
+<ion-header>
+  <ion-toolbar class="toolbarHeader">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Carrinho</ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <ion-card>
-    <ion-item *ngFor="let Carrinho of carrinho">
+    <ion-item *ngFor="let Carrinho of itensProduto">
         <ion-grid>
           <ion-row>
             <ion-col size="12" class="imagemCarrinho">
               <center>
-                <img width="60px" src="{{Carrinho.produto.fotoEmString}}" />
+                <img width="60px" src="{{Carrinho.fotoEmString}}" />
               </center>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="10">
-              <span class="detalhesCarrinho">{{Carrinho.produto.nomeProduto}}</span><br>
-              <span class="detalhesCarrinho">{{Carrinho.produto.precoVenda | currency: "BRL"}}</span>
+              <span class="detalhesCarrinho">{{Carrinho.nomeProduto}}</span><br>
+              <span class="detalhesCarrinho">{{Carrinho.precoVenda | currency: "BRL"}}</span>
               <ion-item lines="none">
-                <ion-select interface="popover" value="{{ Carrinho.quantidadeCarrinho }}">
+                <ion-select interface="popover" value="1">
                   <ion-select-option value="1">1 unidade</ion-select-option>
                   <ion-select-option value="2">2 unidades</ion-select-option>
                   <ion-select-option value="3">3 unidades</ion-select-option>

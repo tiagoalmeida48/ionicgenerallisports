@@ -21,12 +21,10 @@ export class UsuariosService {
 
 
   createUser(form: FormCadastro) {
-    return this.http.post(`http://localhost:8080/api/usuarios/criarUsuario`, form);
+    return this.http.post(`http://localhost:8080/api/usuarios/criarUsuario`, form, { 'headers': this.headers });
   }
 
   updateAvatar(userInfo) {
-
-
     const [base64Header, base64] = userInfo.base64Image.split(',');
     userInfo.base64Image = base64;
 
@@ -38,6 +36,10 @@ export class UsuariosService {
   // }
 
   updateAddress(user) {
-    return this.http.put<Usuario>(`http://localhost:8080/api/usuarios/addressUpdate`, user, { 'headers': this.headers });
+    return this.http.put<Usuario>(`http://localhost:8080/api/usuarios/addressUpdate/${user.id}`, user, { 'headers': this.headers });
+  }
+
+  buscarCep(cep) {
+    return this.http.get<any>(`http://viacep.com.br/ws/${cep}/json`);
   }
 }

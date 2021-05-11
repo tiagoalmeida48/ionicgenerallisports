@@ -7,15 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { CarrinhoPageRoutingModule } from './carrinho-routing.module';
 
 import { CarrinhoPage } from './carrinho.page';
-import { ComponentesModule } from '../componentes/componentes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CarrinhoPageRoutingModule,
-    ComponentesModule
+    CarrinhoPageRoutingModule
   ],
   declarations: [CarrinhoPage]
 })

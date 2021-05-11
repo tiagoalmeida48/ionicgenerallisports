@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { AppComponent } from '../app.component';
-import { Carrinho } from '../models/carrinho.models';
 import { Produto } from '../models/produto.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
 import { CarrinhoService } from '../service/carrinho.service';
 import { ProdutosService } from '../service/produtos.service';
 import { StorageService } from '../service/storage.service';
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -33,7 +31,7 @@ export class DetalhesProdutoPage implements OnInit {
   public validade = null;
   public idPessoa = null;
 
-  constructor(public route: ActivatedRoute, private produtoService: ProdutosService, public nav: NavController, public autorizacao: AutorizacaoService, public storage: StorageService) {
+  constructor(public route: ActivatedRoute, public location: Location, private produtoService: ProdutosService, public nav: NavController, public autorizacao: AutorizacaoService, public storage: StorageService, public carrinho: CarrinhoService) {
     this.route.paramMap.subscribe((param1: ParamMap) => {
       this.produtoService.getProduto(param1.get('id'))
         .subscribe(resposta => {
@@ -58,15 +56,12 @@ export class DetalhesProdutoPage implements OnInit {
 
   }
 
-  // addCarrinho(produto: Produto){
-  //   this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
-  //     this.carrinho = {
-  //       "produto": { "idProduto": produto.idProduto },
-  //       "idUsuario": data.pessoa.idPessoa,
-  //       "quantidadeCarrinho": 1
-  //     };
-  //     this.carrinhoService.createCarrinho(this.carrinho);
-  //   });
-  //   this.nav.navigateRoot('carrinho');
-  // }
+  addCarrinho(produto: Produto){
+    this.carrinho.addCarrinho(produto);
+    this.nav.navigateRoot('carrinho');
+  }
+
+  funcaoBack(){
+    this.location.back();
+  }
 }

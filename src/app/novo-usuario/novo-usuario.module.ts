@@ -4,9 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { NovoUsuarioPageRoutingModule } from './novo-usuario-routing.module';
 
-import { LoginPage } from './login.page';
+import { NovoUsuarioPage } from './novo-usuario.page';
+import { BrMaskerModule } from 'br-mask';
 import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
@@ -15,8 +16,9 @@ import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    LoginPageRoutingModule
+    NovoUsuarioPageRoutingModule,
+    BrMaskerModule
   ],
-  declarations: [LoginPage, CabecalhoBackComponent]
+  declarations: [NovoUsuarioPage, CabecalhoBackComponent]
 })
-export class LoginPageModule {}
+export class NovoUsuarioPageModule {}

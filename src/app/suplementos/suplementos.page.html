@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar class="toolbarHeader">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
+      <ion-back-button defaultHref=""></ion-back-button>
     </ion-buttons>
     <ion-title>Suplementos</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="barraPesquisar=true"><ion-icon name="search"></ion-icon></ion-button>
-      <ion-router-link href="/carrinho"><ion-icon name="cart" class="iconHeader"></ion-icon></ion-router-link>
+      <ion-button [routerLink]="['/carrinho']"><ion-icon name="cart" class="iconHeader"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

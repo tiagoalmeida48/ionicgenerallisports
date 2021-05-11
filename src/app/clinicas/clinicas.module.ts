@@ -7,16 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ClinicasPageRoutingModule } from './clinicas-routing.module';
 
 import { ClinicasPage } from './clinicas.page';
-import { ComponentesModule } from '../componentes/componentes.module';
+import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClinicasPageRoutingModule,
-    ComponentesModule
+    ClinicasPageRoutingModule
   ],
-  declarations: [ClinicasPage]
+  declarations: [ClinicasPage, CabecalhoBackComponent]
 })
 export class ClinicasPageModule {}

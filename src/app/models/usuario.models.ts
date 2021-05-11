@@ -20,7 +20,7 @@ export interface Pessoa {
 }
 
 export interface Endereco {
-  idEndereco?: number,
+  id?: number,
   cep: string ,
   logradouro: string ,
   numero: number ,

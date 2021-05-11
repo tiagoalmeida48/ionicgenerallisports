@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>confirmarEndereco</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-cabecalho-back titulo="Endereco"></app-cabecalho-back>
 
 <ion-content>
-  <h1>Confirmar endereço</h1>
+  <ion-card>
+    <h1 class="ion-text-center">{{ nomePessoa }}</h1>
+    <ion-card-content>
+      <ion-card-title>Entregar no endereço:</ion-card-title><br>
+      <ion-card-subtitle>CEP: {{ cep }}</ion-card-subtitle>
+      <ion-card-subtitle>Rua: {{ logradouro }} nº {{ numero }}</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="complemento != ''">Complemento: {{ complemento }}</ion-card-subtitle>
+      <ion-card-subtitle>Bairro: {{ bairro }}</ion-card-subtitle>
+      <ion-card-subtitle>Cidade: {{ cidade }} / {{ estado }}</ion-card-subtitle>
+    </ion-card-content>
+    <ion-button [routerLink]="['/endereco/' + idEndereco]" expand="full" color="primary">
+      Editar endereço
+    </ion-button>
+    <ion-button expand="full" color="primary">
+      Continuar
+    </ion-button>
+  </ion-card>
 </ion-content>

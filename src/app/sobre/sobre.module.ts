@@ -7,16 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SobrePageRoutingModule } from './sobre-routing.module';
 
 import { SobrePage } from './sobre.page';
-import { ComponentesModule } from '../componentes/componentes.module';
+import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SobrePageRoutingModule,
-    ComponentesModule
+    SobrePageRoutingModule
   ],
-  declarations: [SobrePage]
+  declarations: [SobrePage, CabecalhoBackComponent]
 })
 export class SobrePageModule {}

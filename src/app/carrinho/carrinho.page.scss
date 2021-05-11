@@ -28,3 +28,11 @@ ion-icon {
 ion-select {
   font-size: 15px;
 }
+.toolbarHeader, ion-icon {
+  --background: #0070c0;
+  color: white;
+}
+ion-back-button {
+  --color: white;
+}
+

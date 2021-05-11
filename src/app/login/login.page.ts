@@ -26,11 +26,9 @@ export class LoginPage {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersService: UsuariosService,
     private authService: AutorizacaoService,
     private nav: NavController,
     private storage: StorageService,
-    private activatedRoute: ActivatedRoute,
     private toastController: ToastController,
     private loadingController: LoadingController
   ) {

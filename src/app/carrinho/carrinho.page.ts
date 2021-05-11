@@ -15,18 +15,18 @@ export class CarrinhoPage implements OnInit {
   constructor(private carrinhoService: CarrinhoService, public autorizacao: AutorizacaoService, public storage: StorageService) { }
 
   ngOnInit() {
-    this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
-      this.carrinhoService.getCarrinho(data.pessoa.idPessoa)
-        .subscribe((resposta) => {
-          this.carrinho = resposta;
-      });
-    });
+    // this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
+    //   this.carrinhoService.getCarrinho(data.pessoa.idPessoa)
+    //     .subscribe((resposta) => {
+    //       this.carrinho = resposta;
+    //   });
+    // });
   }
 
-  removeProduto(id){
-    this.carrinhoService.deleteCarrinho(id).subscribe(data => {
-      console.log(data);
-    });
-  }
+  // removeProduto(id){
+  //   this.carrinhoService.deleteCarrinho(id).subscribe(data => {
+  //     console.log(data);
+  //   });
+  // }
 
 }

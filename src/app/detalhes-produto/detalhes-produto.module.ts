@@ -7,19 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { DetalhesProdutoPageRoutingModule } from './detalhes-produto-routing.module';
 
 import { DetalhesProdutoPage } from './detalhes-produto.page';
-import { ComponentesModule } from '../componentes/componentes.module';
 import { LoginPageRoutingModule } from '../login/login-routing.module';
+import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentesModule,
     DetalhesProdutoPageRoutingModule,
     LoginPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [DetalhesProdutoPage]
+  declarations: [DetalhesProdutoPage, CabecalhoBackComponent]
 })
 export class DetalhesProdutoPageModule {}
