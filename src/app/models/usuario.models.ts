@@ -32,7 +32,7 @@ export interface Endereco {
 
 export interface FormCadastro {
   usuario: Usuario
-  confirmaSenha?: string,
+  confirmaSenha: string,
   listaPerfil: Perfil[]
 }
 

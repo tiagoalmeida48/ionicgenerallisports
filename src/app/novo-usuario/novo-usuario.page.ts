@@ -76,11 +76,11 @@ export class NovoUsuarioPage implements OnInit {
       ],
       senha: [
         this.form.usuario.senha,
-        Validators.compose([Validators.required, Validators.minLength(1)]),
+        Validators.compose([Validators.required, Validators.minLength(6)]),
       ],
       confirmaSenha: [
         this.form.confirmaSenha,
-        Validators.compose([Validators.required, Validators.minLength(1)]),
+        Validators.compose([Validators.required, Validators.minLength(6)]),
       ],
       cep: [
         this.form.usuario.pessoa.endereco.cep,
@@ -164,9 +164,11 @@ export class NovoUsuarioPage implements OnInit {
   }
 
   novoUsuario(form){
-    let data = form.usuario.pessoa.dtNascimento;
+    let data = '';
+    data = form.usuario.pessoa.dtNascimento;
     form.usuario.pessoa.dtNascimento = data.split("/")[2] + '-' + data.split("/")[1] + '-' + data.split("/")[0];
-    //this.usuarioService.createUser(form).subscribe(data => console.log(data));
-    console.log(form);
+    this.usuarioService.createUser(form).subscribe(data => console.log(data));
+    this.successToast('Cadastro criado com sucesso');
+    this.nav.navigateForward('login');
   }
 }

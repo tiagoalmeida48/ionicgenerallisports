@@ -21,7 +21,7 @@ export class UsuariosService {
 
 
   createUser(form: FormCadastro) {
-    return this.http.post(`http://localhost:8080/api/usuarios/criarUsuario`, form, { 'headers': this.headers });
+    return this.http.post(`http://localhost:8080/api/usuarios/criarUsuario`, form);
   }
 
   updateAvatar(userInfo) {
