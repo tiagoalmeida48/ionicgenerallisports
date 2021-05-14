@@ -69,6 +69,10 @@ const routes: Routes = [
   {
     path: 'valida-voucher',
     loadChildren: () => import('./valida-voucher/valida-voucher.module').then( m => m.ValidaVoucherPageModule)
+  },
+  {
+    path: 'recuperar-senha',
+    loadChildren: () => import('./recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
   }
 ];
 

@@ -13,7 +13,7 @@ export interface Pessoa {
   endereco: Endereco,
   nome: string,
   cpf: string,
-  dtNascimento: string,
+  dtNascimento: Date,
   sexo: string,
   celular: string,
   telefone: string

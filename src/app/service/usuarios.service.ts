@@ -31,9 +31,9 @@ export class UsuariosService {
     return this.http.post<Usuario>(`http://localhost:8080/api/usuarios/avatarUpdate`, userInfo, { 'headers': this.headers });
   }
 
-  // recoverPassword(email) {
-  //   return this.http.post<RecoverPassword>(`http://localhost:8080/api/esqueci-senha`, email);
-  // }
+  recoverPassword(email) {
+    return this.http.post<Usuario>(`http://localhost:8080/api/esqueci-senha`, email);
+  }
 
   updateAddress(user) {
     return this.http.put<Usuario>(`http://localhost:8080/api/usuarios/addressUpdate/${user.id}`, user, { 'headers': this.headers });

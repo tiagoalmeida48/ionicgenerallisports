@@ -16,18 +16,15 @@ export class CarrinhoService {
 
   }
 
-  addCarrinho(Produto){
-    let added = false;
-    for (let p of this.carrinho) {
-      if (p.id === Produto.idProduto) {
-        p.amount += 1;
-        added = true;
-        break;
-      }
-    }
-    if (!added) {
-      //Produto.quantidadeCarrinho = 1;
-      this.carrinho.push(Produto);
-    }
+  addCarrinho(addCarrinho: Carrinho){
+    this.carrinho.push({
+    "idCarrinho?": addCarrinho.idCarrinho,
+    "idUsuario": addCarrinho.idUsuario,
+    "idProduto": addCarrinho.idProduto,
+    "data": addCarrinho.data,
+    "quantidadeCarrinho": addCarrinho.quantidadeCarrinho,
+    "vlrUnitario": addCarrinho.vlrUnitario,
+    "vlrTotal": addCarrinho.vlrTotal
+    });
   }
 }

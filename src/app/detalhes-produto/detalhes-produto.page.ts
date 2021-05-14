@@ -56,10 +56,10 @@ export class DetalhesProdutoPage implements OnInit {
 
   }
 
-  addCarrinho(produto: Produto){
-    this.carrinho.addCarrinho(produto);
-    this.nav.navigateRoot('carrinho');
-  }
+  // addCarrinho(produto: Produto){
+  //   this.carrinho.addCarrinho(produto);
+  //   this.nav.navigateRoot('carrinho');
+  // }
 
   funcaoBack(){
     this.location.back();

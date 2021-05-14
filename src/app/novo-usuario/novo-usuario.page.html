@@ -17,12 +17,30 @@
 
         <ion-item>
           <ion-label position="floating">Data de nascimento</ion-label>
-          <ion-input [(ngModel)]="form.usuario.pessoa.dtNascimento" formControlName="dtNascimento"  [brmasker]="{mask: '00/00/0000', type:'num'}" maxlength="10" type="text" placeholder="01/12/2001"></ion-input>
+          <ion-input [(ngModel)]="form.usuario.pessoa.dtNascimento" formControlName="dtNascimento" maxlength="10" type="date" placeholder="01/12/2001"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Sexo</ion-label>
-          <ion-input [(ngModel)]="form.usuario.pessoa.sexo" formControlName="sexo" type="text"></ion-input>
+          <ion-radio-group [(ngModel)]="form.usuario.pessoa.sexo" formControlName="sexo" >
+            <ion-list-header>
+              <ion-label>Sexo</ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>Masculino</ion-label>
+              <ion-radio slot="start" value="M"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Feminino</ion-label>
+              <ion-radio slot="start" value="F"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Outros</ion-label>
+              <ion-radio slot="start" value="O"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
         </ion-item>
 
         <ion-item>
@@ -37,7 +55,7 @@
 
         <ion-item>
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input [(ngModel)]="form.usuario.email" formControlName="email" type="email"></ion-input>
+          <ion-input [(ngModel)]="form.usuario.email" formControlName="email" type="email" [email]="true"></ion-input>
         </ion-item>
 
         <ion-item>

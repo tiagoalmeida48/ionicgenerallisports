@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { FormCadastro, Usuario } from '../models/usuario.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
@@ -39,11 +39,10 @@ export class NovoUsuarioPage implements OnInit {
       }
     },
     confirmaSenha: null,
-    listaPerfil:
-      [{
-        authority: "ROLE_CLIENTE",
-        descricao: "Cliente do aplicativo"
-      }]
+    listaPerfil: [{
+      authority: "ROLE_CLIENTE",
+      descricao: "Cliente do aplicativo"
+    }]
   }
 
   constructor(private formBuilder: FormBuilder, private autorizacao: AutorizacaoService, private nav: NavController, private storage: StorageService, private usuarioService: UsuariosService, private toastController: ToastController, private loadingController: LoadingController, private location: Location) {
@@ -54,7 +53,7 @@ export class NovoUsuarioPage implements OnInit {
       ],
       cpf: [
         this.form.usuario.pessoa.cpf,
-        Validators.compose([Validators.required, Validators.minLength(1)]),
+        Validators.compose([Validators.required, Validators.minLength(14)]),
       ],
       dtNascimento: [
         this.form.usuario.pessoa.dtNascimento,
@@ -68,7 +67,9 @@ export class NovoUsuarioPage implements OnInit {
       telefone: this.form.usuario.pessoa.telefone,
       email: [
         this.form.usuario.email,
-        Validators.compose([Validators.required, Validators.minLength(1)]),
+        Validators.compose([
+          Validators.required, Validators.minLength(1)
+        ]),
       ],
       login: [
         this.form.usuario.login,
@@ -84,7 +85,7 @@ export class NovoUsuarioPage implements OnInit {
       ],
       cep: [
         this.form.usuario.pessoa.endereco.cep,
-        Validators.compose([Validators.required, Validators.minLength(1)]),
+        Validators.compose([Validators.required, Validators.minLength(5)]),
       ],
       logradouro: [
         this.form.usuario.pessoa.endereco.logradouro,
@@ -110,8 +111,13 @@ export class NovoUsuarioPage implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
+  checarSenha(form: FormGroup) {
+    let senha = this.form.usuario.senha;
+    let confirmaSenha = this.form.confirmaSenha;
+
+    return senha === confirmaSenha ? true : false;
   }
 
   async showLoading(loadingId: string, loadingMessage: string = 'Aguarde...') {
@@ -121,11 +127,12 @@ export class NovoUsuarioPage implements OnInit {
       spinner: 'circles',
       duration: 4000,
     });
-    return await loading.present();
+    await loading.present();
+    const { role, data } = await loading.onDidDismiss();
   }
 
   async stopLoader(loadingId: string) {
-      return await this.loadingController.dismiss(null, null, loadingId);
+    return await this.loadingController.dismiss(null, null, loadingId);
   }
 
   async errorToast(message) {
@@ -152,7 +159,7 @@ export class NovoUsuarioPage implements OnInit {
 
   buscarEnderecoPorCep() {
     this.usuarioService.buscarCep(this.form.usuario.pessoa.endereco.cep).subscribe(data => {
-      if(data.erro)
+      if (data.erro)
         this.errorToast("Não foi encontrado o cep informado.");
       else {
         this.form.usuario.pessoa.endereco.logradouro = data.logradouro;
@@ -163,12 +170,31 @@ export class NovoUsuarioPage implements OnInit {
     });
   }
 
-  novoUsuario(form){
-    let data = '';
-    data = form.usuario.pessoa.dtNascimento;
-    form.usuario.pessoa.dtNascimento = data.split("/")[2] + '-' + data.split("/")[1] + '-' + data.split("/")[0];
-    this.usuarioService.createUser(form).subscribe(data => console.log(data));
-    this.successToast('Cadastro criado com sucesso');
-    this.nav.navigateForward('login');
+  novoUsuario(form) {
+    this.showLoading('aguarde');
+    if (this.checarSenha(form))
+      this.usuarioService.createUser(form).subscribe(data => {
+        this.successToast("Cadastro realizado com sucesso");
+        this.nav.navigateForward("login");
+      }, error => {
+        if(error.error[0].code == 'cpf.invalido')
+          this.errorToast("CPF é inválido");
+        else if(error.error[0].code == 'cpf.existente')
+          this.errorToast("CPF já existe");
+        else if(error.error[0].code == 'senha.diferente')
+          this.errorToast("As senhas não são iguais");
+        else if(error.error[0].code == 'idade.invalido')
+          this.errorToast("Idade tem que ser mais que 18 anos");
+        else if(error.error[0].code == 'login.existente')
+          this.errorToast("Este login já existe");
+        else if(error.error[0].code == 'email.existente')
+          this.errorToast("E-mail já existe");
+        else
+          this.errorToast("Ocorreu um erro");
+      });
+    else
+      this.errorToast("As senhas não são iguais");
+
+    this.stopLoader('aguarde');
   }
 }
