@@ -8,8 +8,10 @@ import { Location } from "@angular/common";
 })
 export class CabecalhoBackComponent implements OnInit {
   @Input() titulo: string;
+  public qtdeCarrinho: number;
 
-  constructor(public location: Location) { }
+  constructor(public location: Location) {
+  }
 
   ngOnInit() {}
 

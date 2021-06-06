@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Carrinho } from './models/carrinho.models';
+import { StorageService } from './service/storage.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,14 +8,10 @@ import { Carrinho } from './models/carrinho.models';
 })
 export class AppComponent {
 
-  public appPages = [
-    { title: 'Home', url: '/home', icon: 'home' },
-    { title: 'Sobre', url: '/sobre', icon: 'bag-handle' },
-    { title: 'Academias', url: '/academias', icon: 'barbell' },
-    { title: 'Clínicas', url: '/clinicas', icon: 'medkit' },
-    { title: 'Voucher', url: '/voucher', icon: 'archive' },
-    { title: 'Validar Voucher', url: '/valida-voucher', icon: 'checkmark-done-circle' },
-    { title: 'Login', url: '/login', icon: 'people' },
-  ];
-  constructor() {}
+  constructor(private storage: StorageService) { }
+
+  logout() {
+    this.storage.setLocalUser(null);
+    location.reload();
+  }
 }

@@ -2,39 +2,12 @@
 
 <ion-content>
 
-  <ion-card>
+  <ion-card *ngFor="let voucher of voucher" [routerLink]="['/detalhes-voucher/' + voucher.idVoucher]">
     <center>
-        <img src="/assets/icon/vfisio.png">
+        <img src="{{ voucher.fotoEmString }}">
     </center>
-        <ion-card-header>
-          <h5>2 Sessões de fisioterapia por 30 minutos cada.</h5>
-     </ion-card-header>
-      </ion-card>
-
-  <ion-card>
-    <center>
-        <img src="/assets/icon/vclinica.png">
-    </center>
-        <ion-card-header>
-          <h5>Clinicas Parceiras.</h5>
-     </ion-card-header>
-      </ion-card>
-
-  <ion-card>
-    <center>
-        <img src="/assets/icon/vfitness.png">
-    </center>
-        <ion-card-header>
-          <h5>Academias Parceiras.</h5>
-     </ion-card-header>
-      </ion-card>
-
-  <ion-card>
-    <center>
-        <img src="/assets/icon/vpresente.png">
-    </center>
-        <ion-card-header>
-          <h5>Vale Presente.</h5>
-     </ion-card-header>
-      </ion-card>
+    <ion-card-header>
+      <h5>{{ voucher.titulo }}</h5>
+    </ion-card-header>
+  </ion-card>
 </ion-content>

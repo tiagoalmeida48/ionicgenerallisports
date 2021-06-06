@@ -1,13 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto.models';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdutosService {
+  public token = this.storage.getLocalUser() !== null ? this.storage.getLocalUser().token : null;
+  public headers = new HttpHeaders({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+    "Authorization": "Bearer " + this.token,
+  });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public storage: StorageService) { }
 
   getProdutos(){
     return this.http.get('http://localhost:8080/api/produtos/');
@@ -16,16 +23,4 @@ export class ProdutosService {
   getProduto(Pid){
     return this.http.get<Produto>('http://localhost:8080/api/produtos/' + Pid);
   }
-
-  // createPosts(posts: Posts){
-  //   return this.http.post('https://reqres.in/api/users', posts);
-  // }
-
-  // updatePosts(posts: Posts){
-  //   return this.http.put('https://reqres.in/api/users/' + posts.id, posts);
-  // }
-
-  // deletePosts(posts: Posts){
-  //   return this.http.delete('https://reqres.in/api/users/' + posts.id);
-  // }
 }

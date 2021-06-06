@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormCadastro, Usuario } from '../models/usuario.models';
+import { RecuperarSenha } from '../models/RecuperarSenha';
+import { Endereco, FormCadastro, Usuario } from '../models/usuario.models';
 import { StorageService } from './storage.service';
-//import { RecoverPassword } from '../models/RecoverPassword';
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +23,10 @@ export class UsuariosService {
     return this.http.post(`http://localhost:8080/api/usuarios/criarUsuario`, form);
   }
 
+  updateUser(form) {
+    return this.http.put(`http://localhost:8080/api/usuarios/atualizar`, form, { 'headers': this.headers });
+  }
+
   updateAvatar(userInfo) {
     const [base64Header, base64] = userInfo.base64Image.split(',');
     userInfo.base64Image = base64;
@@ -32,7 +35,7 @@ export class UsuariosService {
   }
 
   recoverPassword(email) {
-    return this.http.post<Usuario>(`http://localhost:8080/api/esqueci-senha`, email);
+    return this.http.post<RecuperarSenha>(`http://localhost:8080/api/esqueci-senha`, email);
   }
 
   updateAddress(user) {

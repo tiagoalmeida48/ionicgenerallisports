@@ -1,11 +1,10 @@
-import { ActivatedRoute } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoadingController, NavController, ToastController } from "@ionic/angular";
-import { UsuariosService } from "../service/usuarios.service";
 import { StorageService } from "../service/storage.service";
 import { AutorizacaoService } from "../service/autorizacao.service";
 import { UserAuthLogin } from "../models/usuario.models";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -25,13 +24,7 @@ export class LoginPage {
   public resultado: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AutorizacaoService,
-    private nav: NavController,
-    private storage: StorageService,
-    private toastController: ToastController,
-    private loadingController: LoadingController
-  ) {
+    private formBuilder: FormBuilder, private authService: AutorizacaoService, private nav: NavController, private storage: StorageService, private toastController: ToastController, private loadingController: LoadingController, private location: Location) {
     this.formGroup = formBuilder.group({
       username: [
         this.user.username,
@@ -45,10 +38,9 @@ export class LoginPage {
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.storage.getLocalUser() !== null ? true : false;
-
-    if (this.isLoggedIn) {
-      this.nav.navigateRoot("home");
+    if(this.storage.getLocalUser() != null){
+      this.location.back();
+      this.location.back();
     }
   }
 
@@ -89,17 +81,28 @@ export class LoginPage {
   }
 
   doLogin() {
-    this.showLoading("login");
     this.authService.authenticate(this.user).subscribe(
       (data) => {
-        this.stopLoader("login");
         this.authService.successfulLogin(data.body.jwtToken);
-        location.reload();
+        if(this.storage.posLogin != null){
+          if(this.storage.posLogin.includes('detalhesProduto'))
+            this.nav.navigateForward(this.storage.posLogin);
+          else if(this.storage.posLogin.includes("confirmar-endereco"))
+            this.nav.navigateForward(this.storage.posLogin);
+          else if(this.storage.posLogin.includes("detalhes-voucher"))
+            this.nav.navigateForward(this.storage.posLogin);
+          else
+            this.nav.navigateForward('home');
+        } else
+          this.nav.navigateForward('home');
       },
       (error) => {
-        this.stopLoader("login");
         this.errorToast("Usuário ou senha inválido!");
       }
     );
+  }
+
+  funcaoBack(){
+    this.location.back();
   }
 }

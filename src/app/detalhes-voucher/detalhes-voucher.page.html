@@ -1,0 +1,14 @@
+<app-cabecalho-back titulo="Detalhes Voucher"></app-cabecalho-back>
+
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header>
+      <center><img width="200px" src="{{fotoEmString}}" /></center>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title>{{titulo}}</ion-card-title>
+      <ion-card-title>Valor: {{precoVenda | currency: "BRL"}}</ion-card-title><br>
+      <ion-button expand="full" (click)="confirmarCompra(voucher)">Comprar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,29 +1,28 @@
 export interface Carrinho {
-  idCarrinho?: number,
-  idUsuario: number,
-  idProduto: number,
-  data: Date,
-  quantidadeCarrinho: number,
-  vlrUnitario: number,
-  vlrTotal: number
+  produto: idProduto,
+  quantidade: number,
+  valor: number,
 }
 
-export interface ArrayCarrinho {
-  carrinho: Carrinho,
-  detProduto: Produto
+interface idProduto {
+  idProduto: number,
 }
 
-interface Produto {
-  idProduto: number,
-  nomeProduto: string,
-  descricao: string,
-  categoria: string,
-  validade: string
-  custoUnitario: number,
-  precoVenda: number,
-  quantidadeEstoque: number,
-  saldoAtual: number,
-  caminhoFoto: string,
-  fotoEmString: string,
-  inativo: boolean,
+export interface Produto {
+  produto: {
+    idCarrinho: number,
+    idProduto: number,
+    idPessoa: number,
+    nomeProduto: string,
+    descricao: string,
+    categoria: string,
+    validade: string
+    precoVenda: number,
+    fotoEmString: string,
+    quantidadeCarrinho: number,
+    quantidadeEstoque: number,
+    valor: number,
+    prazoEntrega: string
+  }
 }
+

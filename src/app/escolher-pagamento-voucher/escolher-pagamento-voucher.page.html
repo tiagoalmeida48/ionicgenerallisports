@@ -1,0 +1,68 @@
+<app-cabecalho-back titulo="Escolher pagamentos"></app-cabecalho-back>
+
+<ion-content>
+  <ion-card>
+    <div [formGroup]="formGroup">
+
+      <ion-card-content>
+        <ion-item>
+          <ion-radio-group [(ngModel)]="form.escolherPagamento" formControlName="escolherPagamento" (ionChange)="escolherPagamentoRadioChange($event)">
+            <ion-list-header>
+              <ion-label>Formas de pagamento</ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>Débito/Crédito</ion-label>
+              <ion-radio slot="start" value="CARTAO_CREDITO"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Boleto</ion-label>
+              <ion-radio slot="start" value="BOLETO"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+        </ion-item>
+          <div *ngIf="form.escolherPagamento === 'CARTAO_CREDITO'">
+            <ion-item>
+              <ion-label position="floating">Nome Completo</ion-label>
+              <ion-input [(ngModel)]="form.nome" formControlName="nome" type="text"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Número Cartão</ion-label>
+              <ion-input [(ngModel)]="form.numeroCartao" formControlName="numeroCartao" type="number"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Data Vencimento</ion-label>
+              <ion-input [(ngModel)]="form.dataVencimento" formControlName="dataVencimento" type="date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">CVV</ion-label>
+              <ion-input [(ngModel)]="form.cvv" formControlName="cvv" type="number"></ion-input>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label position="floating">Escolher parcela</ion-label>
+              <ion-select [(ngModel)]="form.parcela" formControlName="parcela">
+                <ion-select-option value=1>1x de {{ parcela1 | currency: "BRL" }}</ion-select-option>
+                <ion-select-option value=2>2x de {{ parcela2 | currency: "BRL" }}</ion-select-option>
+                <ion-select-option value=3>3x de {{ parcela3 | currency: "BRL" }}</ion-select-option>
+                <ion-select-option value=4>4x de {{ parcela4 | currency: "BRL" }}</ion-select-option>
+                <ion-select-option value=5>5x de {{ parcela5 | currency: "BRL" }}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+
+          <ion-button (click)="addPagamento(form)" *ngIf="form.escolherPagamento == null || form.escolherPagamento == 'CARTAO_CREDITO'" [disabled]="!formGroup.valid" expand="full" color="primary">
+            Confirmar dados
+          </ion-button>
+          <ion-button (click)="addPagamento(form)" *ngIf="form.escolherPagamento == 'BOLETO'" expand="full" color="primary">
+            Confirmar dados
+          </ion-button>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ion-content>

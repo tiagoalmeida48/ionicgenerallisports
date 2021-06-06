@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, NavController, ToastController } from '@ionic/angular';
-import { FormCadastro, Usuario } from '../models/usuario.models';
-import { AutorizacaoService } from '../service/autorizacao.service';
+import { FormCadastro } from '../models/usuario.models';
 import { StorageService } from '../service/storage.service';
 import { UsuariosService } from '../service/usuarios.service';
 import { Location } from "@angular/common";
@@ -45,7 +44,7 @@ export class NovoUsuarioPage implements OnInit {
     }]
   }
 
-  constructor(private formBuilder: FormBuilder, private autorizacao: AutorizacaoService, private nav: NavController, private storage: StorageService, private usuarioService: UsuariosService, private toastController: ToastController, private loadingController: LoadingController, private location: Location) {
+  constructor(private formBuilder: FormBuilder, private nav: NavController, private storage: StorageService, private usuarioService: UsuariosService, private toastController: ToastController, private loadingController: LoadingController, private location: Location) {
     this.formGroup = formBuilder.group({
       nome: [
         this.form.usuario.pessoa.nome,
@@ -67,9 +66,7 @@ export class NovoUsuarioPage implements OnInit {
       telefone: this.form.usuario.pessoa.telefone,
       email: [
         this.form.usuario.email,
-        Validators.compose([
-          Validators.required, Validators.minLength(1)
-        ]),
+        Validators.compose([Validators.required, Validators.minLength(1)]),
       ],
       login: [
         this.form.usuario.login,
@@ -131,10 +128,6 @@ export class NovoUsuarioPage implements OnInit {
     const { role, data } = await loading.onDidDismiss();
   }
 
-  async stopLoader(loadingId: string) {
-    return await this.loadingController.dismiss(null, null, loadingId);
-  }
-
   async errorToast(message) {
     const toast = await this.toastController.create({
       color: 'danger',
@@ -194,7 +187,5 @@ export class NovoUsuarioPage implements OnInit {
       });
     else
       this.errorToast("As senhas não são iguais");
-
-    this.stopLoader('aguarde');
   }
 }

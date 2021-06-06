@@ -8,10 +8,50 @@
             <br><br>
           </ion-toolbar>
           <ion-toolbar>
-            <ion-menu-toggle *ngFor="let p of appPages; let i = index">
-              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-                <ion-icon slot="start" [ios]="p.icon" [md]="p.icon + '-sharp'"></ion-icon>
-                <ion-label>{{ p.title }}</ion-label>
+            <ion-menu-toggle>
+              <ion-item routerDirection="root" [routerLink]="['/home']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="home"></ion-icon>
+                <ion-label>Home</ion-label>
+              </ion-item>
+
+              <ion-item routerDirection="root" [routerLink]="['/sobre']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="bag-handle"></ion-icon>
+                <ion-label>Sobre</ion-label>
+              </ion-item>
+
+              <ion-item routerDirection="root" [routerLink]="['/academias']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="barbell"></ion-icon>
+                <ion-label>Academias</ion-label>
+              </ion-item>
+
+              <ion-item routerDirection="root" [routerLink]="['/clinicas']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="medkit"></ion-icon>
+                <ion-label>Clínicas</ion-label>
+              </ion-item>
+
+              <ion-item routerDirection="root" [routerLink]="['/voucher']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="archive"></ion-icon>
+                <ion-label>Voucher</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="storage.getLocalUser() != null" routerDirection="root" [routerLink]="['/info-usuario']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="person-circle"></ion-icon>
+                <ion-label>Meus Dados</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="storage.getLocalUser() != null" routerDirection="root" [routerLink]="['/minhas-compras']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="basket"></ion-icon>
+                <ion-label>Minhas Compras</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="storage.getLocalUser() == null" routerDirection="root" [routerLink]="['/login']" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="people"></ion-icon>
+                <ion-label>Login</ion-label>
+              </ion-item>
+
+              <ion-item *ngIf="storage.getLocalUser() != null" routerDirection="root" (click)="logout()" class="linkSair" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" name="log-out"></ion-icon>
+                <ion-label>Sair</ion-label>
               </ion-item>
             </ion-menu-toggle>
           </ion-toolbar>

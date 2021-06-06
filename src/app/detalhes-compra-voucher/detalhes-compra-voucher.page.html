@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar class="toolbarHeader">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes Compra Voucher</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <img width="200px" class="imgVoucherCompra" src="{{voucher.fotoEmString}}" />
+    </ion-item><br>
+
+    <span class="detalhesVoucher">{{voucher.titulo}}</span><br>
+    <span *ngIf="numeroCartao != null" class="detalhesVoucher">Cartão: ******{{numeroCartao}}<br></span>
+    <span *ngIf="parcela != null" class="detalhesVoucher">Parcela: {{parcela}}x de {{ voucher.precoVenda / parcela | currency: "BRL" }}<br></span>
+    <span class="detalhesVoucher">Total da compra: {{valorCompra | currency: "BRL"}}</span><br><br>
+
+    <ion-button (click)="finalizarCompra()" *ngIf="numeroCartao != null" expand="full" color="primary">
+      Confirmar compra
+    </ion-button>
+    <ion-button (click)="finalizarCompra()" *ngIf="numeroCartao == null" expand="full" color="primary">
+      Gerar Boleto
+    </ion-button>
+  </ion-card>
+</ion-content>

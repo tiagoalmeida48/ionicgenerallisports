@@ -12,6 +12,8 @@ export interface Produto {
   caminhoFoto: string,
   fotoEmString: string,
   inativo: boolean,
+  idPessoa: number,
+  prazoEntrega: string
 }
 
 interface Fornecedor {

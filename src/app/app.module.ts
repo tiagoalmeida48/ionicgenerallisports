@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';// IMPORTANT
 import { registerLocaleData } from '@angular/common';// IMPORTANT
 import localePt from '@angular/common/locales/pt';// IMPORTANT
-import { FormBuilder } from '@angular/forms';
 registerLocaleData(localePt); // IMPORTANT
 
 @NgModule({

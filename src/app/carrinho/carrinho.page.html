@@ -1,49 +1,45 @@
 <ion-header>
   <ion-toolbar class="toolbarHeader">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref=""></ion-back-button>
+      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
     </ion-buttons>
     <ion-title>Carrinho</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-item *ngFor="let Carrinho of itensProduto">
+  <ion-card *ngIf="carrinho.length > 0">
+    <ion-item *ngFor="let Carrinho of carrinho">
         <ion-grid>
           <ion-row>
-            <ion-col size="12" class="imagemCarrinho">
-              <center>
-                <img width="60px" src="{{Carrinho.fotoEmString}}" />
-              </center>
+            <ion-col size="3" class="imagemCarrinho">
+                <img width="80px" src="{{Carrinho.fotoEmString}}" />
             </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="10">
+            <ion-col size="7">
               <span class="detalhesCarrinho">{{Carrinho.nomeProduto}}</span><br>
-              <span class="detalhesCarrinho">{{Carrinho.precoVenda | currency: "BRL"}}</span>
-              <ion-item lines="none">
-                <ion-select interface="popover" value="1">
-                  <ion-select-option value="1">1 unidade</ion-select-option>
-                  <ion-select-option value="2">2 unidades</ion-select-option>
-                  <ion-select-option value="3">3 unidades</ion-select-option>
-                  <ion-select-option value="4">4 unidades</ion-select-option>
-                  <ion-select-option value="5">5 unidades</ion-select-option>
-                  <ion-select-option value="6">6 unidades</ion-select-option>
-                  <ion-select-option value="7">7 unidades</ion-select-option>
-                  <ion-select-option value="8">8 unidades</ion-select-option>
-                  <ion-select-option value="9">9 unidades</ion-select-option>
-                  <ion-select-option value="10">10 unidades</ion-select-option>
-                </ion-select>
-              </ion-item>
+              <span class="detalhesCarrinho">{{Carrinho.vlrSubTotal | currency: "BRL"}}</span><br><br>
+              <span>Quantidade: </span>
+              <span>{{ Carrinho.quantidadeCarrinho }}</span><br>
+              <button (click)="addQtde(Carrinho.idCarrinho, Carrinho.quantidadeCarrinho + 1)" style="background-color: transparent"><ion-icon color="primary" name="add-circle-outline"></ion-icon></button>
+              <button (click)="removeQtde(Carrinho.idCarrinho, Carrinho.quantidadeCarrinho - 1)" style="background-color: transparent"><ion-icon color="danger" name="remove-circle-outline"></ion-icon></button>
             </ion-col>
             <ion-col size="2">
-              <button style="background-color: transparent; margin: 140% 0;" (click)="removeProduto(Carrinho.idCarrinho)">
+              <button style="background-color: transparent; margin: 90% 0;" (click)="removeProduto(Carrinho.idCarrinho)">
                 <ion-icon color="danger" style="font-size: 20px" name="trash-bin-outline" ></ion-icon>
               </button>
             </ion-col>
           </ion-row>
         </ion-grid>
-      </ion-item>
+      </ion-item><br>
+      <span class="detalhesCarrinho">Total da compra: {{vlrTotal | currency: "BRL"}}</span><br><br>
+      <ion-button [routerLink]="['/home']" expand="full" color="primary">
+        Continuar comprando
+      </ion-button>
+      <ion-button (click)="confirmarEndereco()" expand="full" color="primary">
+        Finalizar compra
+      </ion-button>
+  </ion-card>
+  <ion-card *ngIf="carrinho.length == 0" class="carrinhoVazio">
+    <h4>Nenhum produto cadastrado no carrinho</h4>
   </ion-card>
 </ion-content>

@@ -1,0 +1,50 @@
+.imagemCarrinho {
+  margin: auto 0;
+}
+
+span.detalhesCarrinho {
+  font-size: 15px;
+  padding: 0 8px;
+  color: black;
+}
+
+ion-item {
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+.center {
+  text-align: center;
+}
+
+.titulo {
+  color: black;
+  text-decoration: underline;
+}
+ion-icon {
+  color: red;
+  font-size: 20px;
+  pointer-events: none;
+}
+ion-select {
+  font-size: 15px;
+}
+.toolbarHeader, ion-icon {
+  --background: #0070c0;
+  color: white;
+}
+ion-back-button {
+  --color: white;
+}
+.carrinhoVazio {
+  padding: 10px;
+  color: black;
+  text-align: center;
+}
+ion-card-subtitle {
+  font-size: 15px;
+}
+ion-content {
+  --background: rgb(231, 231, 231) no-repeat center center / cover !important;
+  color: black;
+}

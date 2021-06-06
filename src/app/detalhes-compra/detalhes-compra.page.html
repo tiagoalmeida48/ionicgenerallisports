@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar class="toolbarHeader">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes Compra</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item *ngFor="let Carrinho of carrinho">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="5" class="imagemCarrinho">
+                <img width="80px" src="{{Carrinho.fotoEmString}}" />
+            </ion-col>
+            <ion-col size="7">
+              <span class="detalhesCarrinho">{{Carrinho.nomeProduto}}</span><br>
+              <span>Quantidade: {{ Carrinho.quantidadeCarrinho }}</span><br>
+              <span class="detalhesCarrinho">Valor: {{Carrinho.vlrSubTotal | currency: "BRL"}}</span><br><br>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item><br>
+      <hr>
+
+      <span *ngIf="numeroCartao != null" class="detalhesCarrinho">Cartão: ******{{numeroCartao}}<br></span>
+      <span *ngIf="parcela != null" class="detalhesCarrinho">Parcela: {{parcela}}x de {{ vlrTotal / parcela | currency: "BRL" }}<br></span>
+      <span class="detalhesCarrinho">Total da compra: {{vlrTotal | currency: "BRL"}}</span><br><br>
+
+      <span class="detalhesCarrinho">Entregar dia {{ prazoEntrega }} no endereço:</span><br><br>
+
+      <span class="detalhesCarrinho">CEP: {{ endereco.cep }}</span><br>
+      <span class="detalhesCarrinho">Rua: {{ endereco.logradouro }} nº {{ endereco.numero }}</span><br>
+      <span class="detalhesCarrinho" *ngIf="complemento != null">Complemento: {{ endereco.complemento }}<br></span>
+      <span class="detalhesCarrinho">Bairro: {{ endereco.bairro }}</span><br>
+      <span class="detalhesCarrinho">Cidade: {{ endereco.cidade }} / {{ endereco.uf }}</span><br><br>
+
+      <ion-button (click)="finalizarCompra()" *ngIf="numeroCartao != null" expand="full" color="primary">
+        Confirmar compra
+      </ion-button>
+      <ion-button (click)="finalizarCompra()" *ngIf="numeroCartao == null" expand="full" color="primary">
+        Gerar Boleto
+      </ion-button>
+  </ion-card>
+</ion-content>

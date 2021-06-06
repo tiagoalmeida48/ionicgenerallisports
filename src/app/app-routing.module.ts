@@ -59,20 +59,76 @@ const routes: Routes = [
     canActivate: [GuardRotasGuard]
   },
   {
-    path: 'endereco/:id',
-    loadChildren: () => import('./endereco/endereco.module').then( m => m.EnderecoPageModule)
+    path: 'endereco',
+    loadChildren: () => import('./endereco/endereco.module').then( m => m.EnderecoPageModule),
+    canActivate: [GuardRotasGuard]
   },
   {
     path: 'novo-usuario',
     loadChildren: () => import('./novo-usuario/novo-usuario.module').then( m => m.NovoUsuarioPageModule)
   },
   {
-    path: 'valida-voucher',
-    loadChildren: () => import('./valida-voucher/valida-voucher.module').then( m => m.ValidaVoucherPageModule)
-  },
-  {
     path: 'recuperar-senha',
     loadChildren: () => import('./recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
+  },
+  {
+    path: 'escolher-pagamento',
+    loadChildren: () => import('./escolher-pagamento/escolher-pagamento.module').then( m => m.EscolherPagamentoPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'detalhes-compra',
+    loadChildren: () => import('./detalhes-compra/detalhes-compra.module').then( m => m.DetalhesCompraPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'sucesso-compra',
+    loadChildren: () => import('./sucesso-compra/sucesso-compra.module').then( m => m.SucessoCompraPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'info-usuario',
+    loadChildren: () => import('./info-usuario/info-usuario.module').then( m => m.InfoUsuarioPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'usuario',
+    loadChildren: () => import('./usuario/usuario.module').then( m => m.UsuarioPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'minhas-compras',
+    loadChildren: () => import('./minhas-compras/minhas-compras.module').then( m => m.MinhasComprasPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'detalhes-venda/:id',
+    loadChildren: () => import('./detalhes-venda/detalhes-venda.module').then( m => m.DetalhesVendaPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'escolher-pagamento-voucher',
+    loadChildren: () => import('./escolher-pagamento-voucher/escolher-pagamento-voucher.module').then( m => m.EscolherPagamentoVoucherPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'detalhes-voucher/:id',
+    loadChildren: () => import('./detalhes-voucher/detalhes-voucher.module').then( m => m.DetalhesVoucherPageModule)
+  },
+  {
+    path: 'detalhes-compra-voucher',
+    loadChildren: () => import('./detalhes-compra-voucher/detalhes-compra-voucher.module').then( m => m.DetalhesCompraVoucherPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'meus-vouchers',
+    loadChildren: () => import('./meus-vouchers/meus-vouchers.module').then( m => m.MeusVouchersPageModule),
+    canActivate: [GuardRotasGuard]
+  },
+  {
+    path: 'detalhes-venda-voucher/:id',
+    loadChildren: () => import('./detalhes-venda-voucher/detalhes-venda-voucher.module').then( m => m.DetalhesVendaVoucherPageModule),
+    canActivate: [GuardRotasGuard]
   }
 ];
 

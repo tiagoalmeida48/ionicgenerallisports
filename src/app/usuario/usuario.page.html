@@ -1,0 +1,134 @@
+<app-cabecalho-back titulo="Editar usuário"></app-cabecalho-back>
+
+<ion-content>
+  <ion-card>
+    <div [formGroup]="formGroup">
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Nome completo</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.nome" formControlName="nome" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">CPF</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.cpf" formControlName="cpf"  [brmasker]="{mask: '000.000.000-00', type:'num'}" maxlength="14" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Data de nascimento</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.dtNascimento" formControlName="dtNascimento" maxlength="10" type="date" placeholder="01/12/2001"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-radio-group [(ngModel)]="form.pessoa.sexo" formControlName="sexo" >
+            <ion-list-header>
+              <ion-label>Sexo</ion-label>
+            </ion-list-header>
+
+            <ion-item>
+              <ion-label>Masculino</ion-label>
+              <ion-radio slot="start" value="M"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Feminino</ion-label>
+              <ion-radio slot="start" value="F"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Outros</ion-label>
+              <ion-radio slot="start" value="O"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Celular</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.celular" formControlName="celular"  [brmasker]="{mask: '(00) 00000-0000', type:'num'}" maxlength="15" type="text" placeholder="(11) 96532-4521"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.telefone" formControlName="telefone"  [brmasker]="{mask: '(00) 0000-0000', type:'num'}" maxlength="14" type="text" placeholder="(11) 6532-4521"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input [(ngModel)]="form.email" formControlName="email" type="email" [email]="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Login</ion-label>
+          <ion-input [(ngModel)]="form.login" formControlName="login" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">CEP</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.endereco.cep" formControlName="cep" type="text" (ionBlur)="buscarEnderecoPorCep()" [brmasker]="{mask: '00000-000', type:'num'}" maxlength="9"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Rua</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.endereco.logradouro" formControlName="logradouro" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Nº</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.endereco.numero" formControlName="numero" type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Complemento</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.endereco.complemento" formControlName="complemento" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Bairro</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.endereco.bairro" formControlName="bairro" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Cidade</ion-label>
+          <ion-input [(ngModel)]="form.pessoa.endereco.cidade" formControlName="cidade" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Estado</ion-label>
+            <ion-select [(ngModel)]="form.pessoa.endereco.uf" formControlName="uf">
+              <ion-select-option value="AC">Acre</ion-select-option>
+              <ion-select-option value="AL">Alagoas</ion-select-option>
+              <ion-select-option value="AP">Amapá</ion-select-option>
+              <ion-select-option value="AM">Amazonas</ion-select-option>
+              <ion-select-option value="BA">Bahia</ion-select-option>
+              <ion-select-option value="CE">Ceará</ion-select-option>
+              <ion-select-option value="DF">Distrito Federal</ion-select-option>
+              <ion-select-option value="ES">Espírito Santo</ion-select-option>
+              <ion-select-option value="GO">Goiás</ion-select-option>
+              <ion-select-option value="MA">Maranhão</ion-select-option>
+              <ion-select-option value="MT">Mato Grosso</ion-select-option>
+              <ion-select-option value="MS">Mato Grosso do Sul</ion-select-option>
+              <ion-select-option value="MG">Minas Gerais</ion-select-option>
+              <ion-select-option value="PA">Pará</ion-select-option>
+              <ion-select-option value="PB">Paraíba</ion-select-option>
+              <ion-select-option value="PR">Paraná</ion-select-option>
+              <ion-select-option value="PE">Pernambuco</ion-select-option>
+              <ion-select-option value="PI">Piauí</ion-select-option>
+              <ion-select-option value="RJ">Rio de Janeiro</ion-select-option>
+              <ion-select-option value="RN">Rio Grande do Norte</ion-select-option>
+              <ion-select-option value="RS">Rio Grande do Sul</ion-select-option>
+              <ion-select-option value="RO">Rondônia</ion-select-option>
+              <ion-select-option value="RR">Roraima</ion-select-option>
+              <ion-select-option value="SC">Santa Catarina</ion-select-option>
+              <ion-select-option value="SP">São Paulo</ion-select-option>
+              <ion-select-option value="SE">Sergipe</ion-select-option>
+              <ion-select-option value="TO">Tocantins</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button [disabled]="!formGroup.valid" (click)="editarUsuario(form)" expand="full" color="primary">
+          Atualizar
+        </ion-button>
+      </ion-card-content>
+    </div>
+  </ion-card>
+</ion-content>

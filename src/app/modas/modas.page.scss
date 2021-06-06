@@ -5,24 +5,27 @@
 ion-footer {
   background: #747474;
 }
-ion-back-button {
-  color: white !important;
+ion-menu-button {
+  color: white;
 }
 ion-content {
   --background: rgb(231, 231, 231) no-repeat center center / cover !important;
   color: black;
-  --overflow: hidden;
 }
 ion-card {
   --background: white ;
 }
 ion-fab-button {
   float: left;
-  margin: 2px 5px;
+  margin: 2px 2px;
+  width: 50px;
+  height: 50px;
+}
+ion-col {
+  text-align: center;
 }
 .labelProdutosCategorias {
-  margin: -5px 15px 0 2px;
-  font-size: 13px;
+  font-size: 10px;
   color: rgb(131, 131, 131);
 }
 
@@ -32,11 +35,11 @@ ion-fab-button {
 }
 
 img {
-  margin-right: 5px;
+  margin-right: 30px;
 }
 
 ion-item span {
-  font-size: 14px;
+  font-size: 15px;
   padding: 10px 0;
 }
 
@@ -55,5 +58,8 @@ ion-item {
 }
 .produtoIndisponivel {
   color: red;
-  font-size: 15px !important;
+  font-size: 13px !important;
+}
+ion-back-button {
+  --color: white;
 }

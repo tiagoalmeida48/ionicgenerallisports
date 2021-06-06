@@ -5,16 +5,16 @@
     <h1 class="ion-text-center">{{ nomePessoa }}</h1>
     <ion-card-content>
       <ion-card-title>Entregar no endereço:</ion-card-title><br>
-      <ion-card-subtitle>CEP: {{ cep }}</ion-card-subtitle>
+      <ion-card-subtitle>CEP: {{ cep | slice:0:5}}-{{ cep | slice:5:9}}</ion-card-subtitle>
       <ion-card-subtitle>Rua: {{ logradouro }} nº {{ numero }}</ion-card-subtitle>
       <ion-card-subtitle *ngIf="complemento != ''">Complemento: {{ complemento }}</ion-card-subtitle>
       <ion-card-subtitle>Bairro: {{ bairro }}</ion-card-subtitle>
       <ion-card-subtitle>Cidade: {{ cidade }} / {{ estado }}</ion-card-subtitle>
     </ion-card-content>
-    <ion-button [routerLink]="['/endereco/' + idEndereco]" expand="full" color="primary">
+    <ion-button [routerLink]="['/endereco/']" expand="full" color="primary">
       Editar endereço
     </ion-button>
-    <ion-button expand="full" color="primary">
+    <ion-button expand="full" color="primary" [routerLink]="['/escolher-pagamento']">
       Continuar
     </ion-button>
   </ion-card>

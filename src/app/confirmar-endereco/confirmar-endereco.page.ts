@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../models/usuario.models';
 import { AutorizacaoService } from '../service/autorizacao.service';
+import { CarrinhoService } from '../service/carrinho.service';
 import { StorageService } from '../service/storage.service';
 
 @Component({
@@ -28,7 +29,7 @@ export class ConfirmarEnderecoPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.autorizacao.findByLogin("admin").subscribe(data => {
+    this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
       this.infoPessoa = data;
       this.nomePessoa = data.pessoa.nome;
       this.idEndereco = data.pessoa.endereco.id;

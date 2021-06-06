@@ -1,0 +1,35 @@
+.form-container {
+  margin: 10px;
+}
+
+.form-title {
+  font-weight: 700;
+  font-size: 28px;
+  text-align: center;
+}
+.form-title-boleto {
+  background: orange;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+}
+.success-icon {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  width: 60%;
+}
+.toolbarHeader, ion-icon {
+  --background: #0070c0;
+  color: white;
+}
+ion-back-button {
+  --color: white;
+}
+.toolbarHeader ion-title {
+  --color: white;
+}
+ion-content {
+  --background: rgb(231, 231, 231) no-repeat center center / cover !important;
+  color: black;
+}

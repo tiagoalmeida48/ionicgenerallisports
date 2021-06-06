@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>recuperarSenha</ion-title>
+  <ion-toolbar class="toolbarHeader">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="funcaoBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recup. Senha</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <div [formGroup]="formGroup">
+      <h2 class="ion-text-center black">Recuperar Senha</h2>
+      <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input [(ngModel)]="user.email" formControlName="email" type="text"></ion-input>
+      </ion-item><br>
 
+      <ion-button [disabled]="!formGroup.valid" (click)="recuperarSenha()" expand="full" color="primary">
+        Recuperar
+      </ion-button><br>
+    </div>
+  </ion-card>
 </ion-content>

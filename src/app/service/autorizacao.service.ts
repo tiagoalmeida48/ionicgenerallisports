@@ -11,7 +11,7 @@ import { StorageService } from './storage.service';
 export class AutorizacaoService {
 
   public jwtHelper: JwtHelperService = new JwtHelperService();
-
+  public idPessoaAtual: number;
 
   constructor(private http: HttpClient, public storage: StorageService) {
 

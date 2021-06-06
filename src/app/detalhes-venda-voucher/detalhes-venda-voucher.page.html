@@ -1,0 +1,45 @@
+<app-cabecalho-back titulo="Detalhes da Venda"></app-cabecalho-back>
+
+<ion-content>
+  <ion-card><br>
+    <span class="detalhes">Código da Compra: {{idCompra}}</span><br><br>
+    <span class="detalhes">Valor da Compra: {{valorCompra | currency: "BRL"}}</span><br><br>
+    <span class="detalhes">Forma de Pagamento: {{ condicaoPagamento == "BOLETO" ? "Boleto" : "Cartão" }}</span><br><br>
+    <span class="detalhes">Situação da Compra: {{ situacaoCompra == "AGUARDANDO" ? "Aguardando" : "Recebido" }}</span><br><br>
+    <span class="detalhes">Data Compra: {{dtPedidoVenda | slice:8:10}}/{{dtPedidoVenda | slice:5:7}}/{{dtPedidoVenda | slice:0:4}}</span><br><br>
+
+    <h4>Voucher Comprado</h4>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5" class="imagemCarrinho">
+              <img width="70px" src="{{ fotoEmString }}" />
+          </ion-col>
+          <ion-col size="7">
+            <span class="detalhesCarrinho">{{titulo}}</span><br>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <div *ngIf="voucherValidado == null && situacaoCompra == 'RECEBIDO'">
+      <center><ngx-qrcode [value]="valueQrCode"></ngx-qrcode>Código: {{ valueQrCode }}</center><br>
+      <div class="avisoQrcode">AVISO: Só coloque o código para validar somente quando estiver no local de sua preferência e com orientação da recepcionista.</div>
+      <div [formGroup]="formGroup">
+        <ion-item>
+          <ion-label position="floating">Número QRCode</ion-label>
+          <ion-input [(ngModel)]="validado" formControlName="validado" type="number"></ion-input>
+        </ion-item>
+
+        <ion-button [disabled]="!formGroup.valid" (click)="validar()" expand="full" color="primary">
+          Validar Voucher
+        </ion-button><br>
+      </div>
+    </div>
+    <div class="avisoQrcode" *ngIf="voucherValidado == null && situacaoCompra == 'AGUARDANDO'">
+      <div>Aguardando a liberação do pagamento, para poder validar a voucher</div>
+    </div>
+    <div class="avisoQrcode" *ngIf="voucherValidado != null">
+      <div>Esse voucher já foi validado</div>
+    </div><br>
+  </ion-card>
+</ion-content>

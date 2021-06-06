@@ -1,0 +1,27 @@
+<app-cabecalho-back titulo="Meus Dados"></app-cabecalho-back>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-subtitle>Nome:  {{ nome }}</ion-card-subtitle>
+      <ion-card-subtitle>CPF:  {{ cpf | slice:0:3 }}.{{ cpf | slice:3:6 }}.{{ cpf | slice:6:9 }}-{{ cpf | slice:9:11 }}</ion-card-subtitle>
+      <ion-card-subtitle>Data Nascimento:  {{ dtNascimento | slice:8:10 }}/{{ dtNascimento | slice:5:7 }}/{{ dtNascimento | slice:0:4 }}</ion-card-subtitle>
+      <ion-card-subtitle>Sexo:  {{ sexo == 'M'? 'Masculino' : 'Feminino' }}</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="celular != null">Celular: ({{ celular | slice:0:2 }}) {{ celular | slice:2:7 }}-{{ celular | slice:7:11 }}</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="telefone != null">telefone: ({{ telefone | slice:0:2 }}) {{ telefone | slice:2:7 }}-{{ telefone | slice:7:11 }}</ion-card-subtitle>
+      <ion-card-subtitle>E-mail:  {{ email }}</ion-card-subtitle>
+      <ion-card-subtitle>Login:  {{ login }}</ion-card-subtitle>
+      <ion-card-subtitle>CEP: {{ cep | slice:0:5 }}-{{ cep | slice:5:9 }}</ion-card-subtitle>
+      <ion-card-subtitle>Logradouro:  {{ logradouro }}</ion-card-subtitle>
+      <ion-card-subtitle>Numero:  {{ numero }}</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="complemento != null">Complemento:  {{ complemento }}</ion-card-subtitle>
+      <ion-card-subtitle>Bairro:  {{ bairro }}</ion-card-subtitle>
+      <ion-card-subtitle>Cidade:  {{ cidade }}</ion-card-subtitle>
+      <ion-card-subtitle>Estado:  {{ uf }}</ion-card-subtitle>
+
+      <ion-button [routerLink]="['/usuario/']" expand="full" color="primary">
+        Editar usuario
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

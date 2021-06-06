@@ -8,7 +8,6 @@ import { SuplementosPageRoutingModule } from './suplementos-routing.module';
 
 import { SuplementosPage } from './suplementos.page';
 import { PipesModule } from '../pipes/pipes.module';
-import { CabecalhoBackComponent } from '../componentes/cabecalho-back/cabecalho-back.component';
 
 @NgModule({
   imports: [

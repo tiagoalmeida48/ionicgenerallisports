@@ -127,7 +127,8 @@ export class EnderecoPage implements OnInit {
       uf: this.formGroup.value.uf
     }
 
-    this.usuarioService.updateAddress(atualizarEndereco);
+    this.usuarioService.updateAddress(atualizarEndereco).subscribe(data => {},
+      error => { console.log(error) });
     this.location.back();
   }
 }

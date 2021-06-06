@@ -6,7 +6,7 @@ import { AutorizacaoService } from '../service/autorizacao.service';
 import { CarrinhoService } from '../service/carrinho.service';
 import { ProdutosService } from '../service/produtos.service';
 import { StorageService } from '../service/storage.service';
-import { Location } from "@angular/common";
+import { formatDate, Location } from "@angular/common";
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -15,7 +15,10 @@ import { Location } from "@angular/common";
 })
 export class DetalhesProdutoPage implements OnInit {
 
-  //public carrinho: Carrinho;
+  public dataHoje = new Date();
+  public produtoDetalhe = {};
+  public carrinho: any;
+
   public produto: Produto;
   public caminhoFoto = null;
   public categoria = null;
@@ -30,8 +33,10 @@ export class DetalhesProdutoPage implements OnInit {
   public saldoAtual = null;
   public validade = null;
   public idPessoa = null;
+  public prazoEntrega = null;
+  public vlrTotal = null;
 
-  constructor(public route: ActivatedRoute, public location: Location, private produtoService: ProdutosService, public nav: NavController, public autorizacao: AutorizacaoService, public storage: StorageService, public carrinho: CarrinhoService) {
+  constructor(public route: ActivatedRoute, public location: Location, private produtoService: ProdutosService, public nav: NavController, public autorizacao: AutorizacaoService, public storage: StorageService, public carrinhoService: CarrinhoService) {
     this.route.paramMap.subscribe((param1: ParamMap) => {
       this.produtoService.getProduto(param1.get('id'))
         .subscribe(resposta => {
@@ -47,19 +52,44 @@ export class DetalhesProdutoPage implements OnInit {
           this.precoVenda = resposta.precoVenda;
           this.quantidadeEstoque = resposta.quantidadeEstoque;
           this.saldoAtual = resposta.saldoAtual;
-          this.validade = resposta.validade;
-        });
+          this.validade = resposta.validade != null ? formatDate(resposta.validade, "dd/MM/yyyy", "pt-BR") : null;
+          this.prazoEntrega = formatDate(this.dataHoje.setDate(this.dataHoje.getDate() + 5), "dd 'de' MMMM", "pt-BR");
+      });
     });
   }
 
   ngOnInit() {
-
   }
 
-  // addCarrinho(produto: Produto){
-  //   this.carrinho.addCarrinho(produto);
-  //   this.nav.navigateRoot('carrinho');
-  // }
+  addCarrinho(produto){
+    if(this.storage.getLocalUser() != null){
+      this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
+        this.produto.idPessoa = data.pessoa.idPessoa;
+        this.produto.prazoEntrega = this.prazoEntrega;
+        this.carrinhoService.addCarrinho(produto);
+        this.vlrTotal = this.carrinhoService.vlrTotalCarrinho;
+      });
+    }
+
+    this.storage.posLogin = "detalhesProduto/" + produto.idProduto;
+    this.nav.navigateForward('carrinho');
+  }
+
+  confirmarEndereco(produto){
+    if(this.storage.getLocalUser() != null){
+      this.autorizacao.findByLogin(this.storage.getLocalUser().login).subscribe(data => {
+        this.carrinhoService.carrinho = [];
+        this.carrinhoService.carrinhoGravar = [];
+        this.produto.idPessoa = data.pessoa.idPessoa;
+        this.produto.prazoEntrega = this.prazoEntrega;
+        this.carrinhoService.addCarrinho(produto);
+        this.carrinhoService.addCarrinhoGravar(this.carrinhoService.carrinho);
+      });
+    }
+    this.storage.posLogin = "detalhesProduto/" + produto.idProduto;
+    this.nav.navigateForward('confirmar-endereco');
+
+  }
 
   funcaoBack(){
     this.location.back();
